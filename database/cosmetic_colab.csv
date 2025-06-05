@@ -1,0 +1,17 @@
+id,marca_maquillaje,videojuego,fecha_colaboracion,tipo_colaboracion,incremento_ventas_maquillaje,image_url
+1,Fenty Beauty,League of Legends,2024-11-02,Edición limitada de productos inspirados en personajes,15%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/a.png
+2,MAC Cosmetics,The Sims 4,2023-06-15,Looks de maquillaje virtuales en el juego,10%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/b.jpg
+3,Maybelline,Roblox,2023-10-09,Campaña interactiva con maquillaje virtual y música,12%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/c.jpg
+4,NARS,Roblox,2022-07-20,Activación de 90 días con productos virtuales,8%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/d.jpg
+5,Dove,Roblox,2023-03-15,Juego educativo para promover la confianza corporal,5%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/e.jpg
+6,e.l.f. Cosmetics,Roblox,2023-02-28,Venta de productos físicos y virtuales en la plataforma,20%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/f.jpg
+7,Givenchy Beauty,Animal Crossing,2023-05-10,Creación de looks de maquillaje para avatares,9%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/g.jpg
+8,Tatcha,Animal Crossing,2023-04-22,Espacios virtuales de bienestar para promover productos,7%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/h.png
+9,Gillette Venus,Animal Crossing,2023-07-01,Opciones de personalización de piel para avatares,6%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/i.jpg
+10,Revolution Beauty,Fortnite,2023-09-15,Edición limitada de maquillaje inspirado en el juego,11%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/j.jpg
+11,Charlotte Tilbury,Final Fantasy XIV,2024-01-20,Colaboración para looks de personajes en el juego,13%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/k.png
+12,Urban Decay,Cyberpunk 2077,2023-11-11,Lanzamiento de línea de maquillaje futurista,14%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/l.jpg
+13,Sephora,Overwatch,2023-08-05,Productos inspirados en héroes del juego,10%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/m.jpg
+14,L'Oréal,World of Warcraft,2023-12-15,Colaboración para eventos temáticos en el juego,12%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/n.jpg
+15,Estée Lauder,Apex Legends,2023-10-20,Edición especial de productos en colaboración con personajes,10%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/o.jpg
+

@@ -1,0 +1,16 @@
+id,videojuego,marca_maquillaje,fecha_colaboracion,incremento_ventas_videojuego,image_url
+1,League of Legends,Fenty Beauty,2024-11-02,5%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//1.jpg
+2,The Sims 4,MAC Cosmetics,2023-06-15,3%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/2.jpg
+3,Roblox,Maybelline,2023-10-09,4%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/3.jpg
+4,Roblox,NARS,2022-07-20,2%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/4.png
+5,Roblox,Dove,2023-03-15,1%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/5.jpg
+6,Roblox,e.l.f. Cosmetics,2023-02-28,6%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/6.jpg
+7,Animal Crossing,Givenchy Beauty,2023-05-10,3%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/7.jpg
+8,Animal Crossing,Tatcha,2023-04-22,2%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/8.png
+9,Animal Crossing,Gillette Venus,2023-07-01,2%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/9.png
+10,Fortnite,Revolution Beauty,2023-09-15,4%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/10.jpg
+11,Final Fantasy XIV,Charlotte Tilbury,2024-01-20,5%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/11.png
+12,Cyberpunk 2077,Urban Decay,2023-11-11,6%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/12.jpg
+13,Overwatch,Sephora,2023-08-05,4%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/13.jpg
+14,World of Warcraft,L'Oréal,2023-12-15,5%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/14.jpg
+15,Apex Legends,Estée Lauder,2023-10-20,7%,https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes/15.jpg
