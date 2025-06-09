@@ -8,6 +8,7 @@
         color: var(--purple);
         margin-bottom: 1.5rem;
         font-family: 'Poppins', sans-serif;
+        font-weight: bold;
     ">
         💄 No es solo maquillaje.💄 <br>🎮No es solo gaming.🎮<br><strong> ✨Es el futuro del marketing.✨</strong>
     </h1>
@@ -67,15 +68,91 @@
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
             color: var(--purple);
+            font-weight: bold;
         }
         .circle-box p {
             font-size: 1.05rem;
+        }
+        .behind-section {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-family: 'Poppins', sans-serif;
+        }
+        .behind-section h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--purple);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        .behind-section p {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        .palette-highlight {
+            border: 4px solid var(--purple);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 3rem;
+            background: linear-gradient(135deg, rgba(255,202,212,0.2), rgba(255,202,212,0));
+            box-shadow: 0 0 10px rgba(106,48,147,0.3);
+        }
+        .palette-section {
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .palette-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            color: var(--purple);
+        }
+        .palette-header h2 {
+            font-size: 1.7rem;
+            margin: 0;
+            font-weight: bold;
+        }
+        .palette-description {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-family: 'Poppins', sans-serif;
+        }
+        .palette-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            justify-items: center;
+            text-align: left;
+        }
+        .palette-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .color-box {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         @media (max-width: 800px) {
             .circle-box { width: 360px; height: 360px; padding: 2rem; }
             .circle-box h2, .circle-box h3 { font-size: 1.6rem; }
             .circle-box p { font-size: 1rem; }
             .circle-container { grid-template-columns: 1fr; }
+            .palette-container { grid-template-columns: 1fr 1fr; }
         }
         </style>
 
@@ -109,6 +186,66 @@
                 <div class="circle-light"></div>
             </div>
         </div>
+
+        <div class="behind-section">
+            <h2>DETRÁS DEL PROYECTO...</h2>
+            <p>Todo empezó con una idea loca: ¿y si el maquillaje no fuera solo algo que se aplica, sino una experiencia que se vive? Entre botellas se Speed max, líneas de código que no querían cooperar y muchas pruebas fallidas, nació este proyecto.</p>
+            <p>No fue fácil. A veces el servidor se caía, otras veces era mi motivación la que necesitaba reiniciarse. Pero algo dentro de mí sabía que esto era más que una tarea o un proyecto: era la oportunidad de unir tecnología, creatividad y 2 cosas que me gustan mucho en algo con propósito: Mi tan anhelado proyecto de desarrollo de software.</p>
+        </div>
+
+        <div class="palette-highlight">
+            <div class="palette-section">
+                <div class="palette-header">
+                    <span>🖌️</span>
+                    <h2><strong>PALETA DE COLORES</strong></h2>
+                    <span>🖌️</span>
+                </div>
+                <p class="palette-description">Este proyecto utiliza la siguiente paleta para reflejar identidad y coherencia visual (además son mis colores favoritos):</p>
+                <div class="palette-container">
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #6A3093FF;"></div>
+                        <code>#6A3093FF</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #FFCAD4FF;"></div>
+                        <code>#FFCAD4FF</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #F8F4FFFF;"></div>
+                        <code>#F8F4FFFF</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #E2D1F9FF;"></div>
+                        <code>#E2D1F9FF</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #D6AFFFFF;"></div>
+                        <code>#D6AFFFFF</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #E9DDF94C;"></div>
+                        <code>#E9DDF94C</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #B26EDBFF;"></div>
+                        <code>#B26EDBFF</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #9C27B0FF;"></div>
+                        <code>#9C27B0FF</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #CCCCCCFF;"></div>
+                        <code>#CCCCCCFF</code>
+                    </div>
+                    <div class="palette-item">
+                        <div class="color-box" style="background-color: #5E4B8BFF;"></div>
+                        <code>#5E4B8BFF</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 {% endblock %}
