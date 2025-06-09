@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block title %}
+Fase de diseño
+{% endblock %}
+
+{% block content %}
+<section style="background-color: var(--bg-purple); padding: 2rem;">
+    <h1 style="
+        text-align: center;
+        color: var(--purple);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    ">
+        🧩 Fase de diseño del proyecto
+    </h1>
+
+    <div style="
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: var(--very-light-purple);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(106, 48, 147, 0.2);
+        color: #333;
+    ">
+        <p>
+            En esta fase se definieron los componentes visuales y funcionales del proyecto. Se estableció una paleta de colores armónica basada en tonos púrpura para reflejar creatividad y tecnología, en sintonía con la temática de colaboraciones entre maquillaje y videojuegos.
+        </p>
+
+        <p>
+            La estructura del sitio incluye secciones como inicio, registros de colaboraciones, búsqueda, eliminados y más. Cada sección tiene su diseño adaptado a las necesidades del usuario final, priorizando la experiencia de navegación y accesibilidad.
+        </p>
+
+        <p>
+            Se utilizó <strong>FastAPI</strong> con plantillas <strong>Jinja2</strong> para generar contenido dinámico, asegurando que los datos sean presentados de forma clara y estética.
+        </p>
+    </div>
+</section>
+
+<section style="padding: 2rem;">
+    <h2 style="
+        text-align: center;
+        color: var(--purple);
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    ">
+        🎮💄 Mapas de Endpoints.💄🎮
+    </h2>
+
+    <div style="
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+    ">
+        <!-- Mapa de Endpoints de Maquillaje -->
+        <div style="
+            flex: 1 1 400px;
+            background-color: var(--very-light-purple);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(106, 48, 147, 0.2);
+        ">
+            <h3 style="text-align: center; color: var(--purple); margin-bottom: 1rem;">💄 Endpoints Maquillaje</h3>
+            <table style="width: 100%; border-collapse: collapse; color: #333;">
+                <thead>
+                    <tr style="background-color: var(--purple); color: white;">
+                        <th style="padding: 0.75rem;">Método</th>
+                        <th style="padding: 0.75rem;">Ruta</th>
+                        <th style="padding: 0.75rem;">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>🟢 GET</td><td>/colaboraciones</td><td>Lista de colaboraciones</td></tr>
+                    <tr style="background-color: #f5eafa;"><td>🟢 GET</td><td>/colaboraciones/crear</td><td>Formulario nueva colaboración</td></tr>
+                    <tr><td>🟣 POST</td><td>/colaboraciones/crear</td><td>Guardar colaboración</td></tr>
+                    <tr style="background-color: #f5eafa;"><td>🟢 GET</td><td>/colaboraciones/{id}</td><td>Ver detalles</td></tr>
+                    <tr><td>🟢 GET</td><td>/colaboraciones/editar/{id}</td><td>Editar colaboración</td></tr>
+                    <tr style="background-color: #f5eafa;"><td>🟣 POST</td><td>/colaboraciones/editar/{id}</td><td>Guardar edición</td></tr>
+                    <tr><td>🟢 GET</td><td>/colaboraciones/eliminar/{id}</td><td>Eliminar colaboración</td></tr>
+                    <tr style="background-color: #f5eafa;"><td>🟢 GET</td><td>/eliminadas</td><td>Colaboraciones eliminadas</td></tr>
+                    <tr><td>🟢 GET</td><td>/buscar</td><td>Búsqueda</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Mapa de Endpoints de Videojuegos -->
+        <div style="
+            flex: 1 1 400px;
+            background-color: var(--very-light-purple);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(106, 48, 147, 0.2);
+        ">
+            <h3 style="text-align: center; color: var(--purple); margin-bottom: 1rem;">🎮 Endpoints Videojuegos</h3>
+            <table style="width: 100%; border-collapse: collapse; color: #333;">
+                <thead>
+                    <tr style="background-color: var(--purple); color: white;">
+                        <th style="padding: 0.75rem;">Método</th>
+                        <th style="padding: 0.75rem;">Ruta</th>
+                        <th style="padding: 0.75rem;">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>🟢 GET</td><td>/videojuegos</td><td>Lista de videojuegos</td></tr>
+                    <tr style="background-color: #f5eafa;"><td>🟢 GET</td><td>/videojuegos/crear</td><td>Formulario nuevo videojuego</td></tr>
+                    <tr><td>🟣 POST</td><td>/videojuegos/crear</td><td>Guardar videojuego</td></tr>
+                    <tr style="background-color: #f5eafa;"><td>🟢 GET</td><td>/videojuegos/{id}</td><td>Ver detalles</td></tr>
+                    <tr><td>🟢 GET</td><td>/videojuegos/editar/{id}</td><td>Editar videojuego</td></tr>
+                    <tr style="background-color: #f5eafa;"><td>🟣 POST</td><td>/videojuegos/editar/{id}</td><td>Guardar edición</td></tr>
+                    <tr><td>🟢 GET</td><td>/videojuegos/eliminar/{id}</td><td>Eliminar videojuego</td></tr>
+                    <tr style="background-color: #f5eafa;"><td>🟢 GET</td><td>/videojuegos/eliminados</td><td>Videojuegos eliminados</td></tr>
+                    <tr><td>🟢 GET</td><td>/buscar_videojuegos</td><td>Búsqueda</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: var(--bg-purple); padding: 2rem;">
+  <h2 style="
+      text-align: center;
+      color: var(--purple);
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+  ">
+    🖌️ Wireframes y Mockups del Proyecto
+  </h2>
+
+  <div style="
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: var(--very-light-purple);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(106, 48, 147, 0.15);
+      color: #333;
+      line-height: 1.6;
+  ">
+    <p>
+      Antes de desarrollar el sistema, se diseñaron <strong>wireframes</strong> para planear la estructura visual de las páginas. Estos esquemas de baja fidelidad permitieron organizar los elementos clave de la interfaz y validar la usabilidad del sitio desde una etapa temprana.
+    </p>
+    <p>
+      Posteriormente, se crearon <strong>mockups</strong> de alta fidelidad donde se aplicaron los colores, tipografías y estilos definidos en la fase de diseño. Esto ayudó a visualizar cómo se vería el sitio final y permitió hacer ajustes estéticos antes de pasar a la implementación.
+    </p>
+
+    <!-- Definimos un listado con información de cada sección y sus URLs de imágenes -->
+    {% set sections = [
+      { 'title': '🏠INICIO🏠', 'wireframe_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//INICIOW.jpg', 'mockup_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//INICIOM.jpg' },
+      { 'title': '🖌️CREAR🖌️', 'wireframe_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//CREARW.jpg', 'mockup_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//CREARM.jpg' },
+      { 'title': '🗑️ELIMINAR🗑️', 'wireframe_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//ELIMINARW.jpg', 'mockup_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//ELIMINARM.jpg' },
+      { 'title': '🔎BUSCAR🔍', 'wireframe_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//CONSULTARW.jpg', 'mockup_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//CONSULTARM.jpg' },
+      { 'title': '🔄ACTUALIZAR🔄', 'wireframe_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//ACTUALIZARW.jpg', 'mockup_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//ACTUALIZARM.jpg' },
+      { 'title': '👤DESARROLLADORA👤', 'wireframe_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//YOW.jpg', 'mockup_url': 'https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//YOM.jpg' }
+    ] %}
+
+    <!-- Contenedor general -->
+    <div style="display: flex; flex-direction: column; gap: 2.5rem; margin-top: 2rem;">
+
+      <!-- Bloques por sección -->
+      {% for section in sections %}
+      <div>
+        <h3 style="text-align: center; color: var(--purple); margin-bottom: 1rem;">{{ section.title }}</h3>
+        <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+          <div style="text-align: center; flex: 1 1 300px;">
+            {% if section.wireframe_url %}
+            <img src="{{ section.wireframe_url }}" alt="Wireframe {{ section.title }}" style="width: 100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            {% else %}
+            <div style="width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:#e0e0e0;border-radius:12px;">
+              <span style="color:#666;">URL de wireframe para {{ section.title }}</span>
+            </div>
+            {% endif %}
+            <p style="margin-top: 0.5rem;">✨Wireframe✨</p>
+          </div>
+          <div style="text-align: center; flex: 1 1 300px;">
+            {% if section.mockup_url %}
+            <img src="{{ section.mockup_url }}" alt="Mockup {{ section.title }}" class="mockup-img" style="width: 100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer;">
+            {% else %}
+            <div style="width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:#e0e0e0;border-radius:12px;">
+              <span style="color:#666;">URL de mockup para {{ section.title }}</span>
+            </div>
+            {% endif %}
+            <p style="margin-top: 0.5rem;">✨Mockup✨</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Modal para expandir imágenes de mockup -->
+<div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); align-items:center; justify-content:center; z-index:1000;">
+  <span id="modalClose" style="position:absolute; top:20px; right:30px; color:#fff; font-size:2rem; cursor:pointer;">&times;</span>
+  <img id="modalImage" src="" alt="" style="max-width:90%; max-height:90%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.5);">
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalClose = document.getElementById('modalClose');
+  document.querySelectorAll('img.mockup-img').forEach(img => {
+    img.addEventListener('click', () => {
+      modalImage.src = img.src;
+      modal.style.display = 'flex';
+    });
+  });
+  modalClose.addEventListener('click', () => { modal.style.display = 'none'; modalImage.src = ''; });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none'; modalImage.src = '';
+    }
+  });
+});
+</script>
+
+{% endblock %}
