@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section style="background-color: var(--bg-purple); padding: 2rem;">
+    <h1 style="
+        text-align: center;
+        font-size: 2.5rem;
+        color: var(--purple);
+        margin-bottom: 1.5rem;
+        font-family: 'Poppins', sans-serif;
+    ">
+        💄 No es solo maquillaje.💄 <br>🎮No es solo gaming.🎮<br><strong> ✨Es el futuro del marketing.✨</strong>
+    </h1>
+
+    <div style="
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: var(--very-light-purple);
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 6px 16px rgba(106, 48, 147, 0.15);
+        color: #333;
+        line-height: 1.6;
+    ">
+        <style>
+        @keyframes ledGlowUniform {
+            0% { box-shadow: 0 0 15px rgba(255, 202, 212, 0.6), 0 0 30px rgba(255, 202, 212, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 202, 212, 1), 0 0 50px rgba(255, 202, 212, 0.8); }
+            100% { box-shadow: 0 0 15px rgba(255, 202, 212, 0.6), 0 0 30px rgba(255, 202, 212, 0.4); }
+        }
+        .circle-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            justify-items: center;
+            margin: 2rem 0;
+        }
+        .circle-box {
+            width: 440px;
+            height: 440px;
+            border-radius: 50%;
+            background-color: #FFCAD4FF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2.5rem;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            transition: transform 0.3s;
+        }
+        .circle-box:hover {
+            transform: scale(1.05);
+        }
+        .circle-light {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ledGlowUniform 1.5s infinite ease-in-out;
+        }
+        .circle-box h2, .circle-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--purple);
+        }
+        .circle-box p {
+            font-size: 1.05rem;
+        }
+        @media (max-width: 800px) {
+            .circle-box { width: 360px; height: 360px; padding: 2rem; }
+            .circle-box h2, .circle-box h3 { font-size: 1.6rem; }
+            .circle-box p { font-size: 1rem; }
+            .circle-container { grid-template-columns: 1fr; }
+        }
+        </style>
+
+        <div class="circle-container">
+            <div class="circle-box">
+                <div>
+                    <h2><strong>👀 Planteamiento<br>del Proyecto.👀</strong></h2>
+                    <p>¿Sabías que últimamente las marcas de maquillaje y los videojuegos están empezando a trabajar juntas? Suena raro al principio, pero tiene todo el sentido del mundo. Ambas industrias buscan nuevas formas de conectar con el público joven y digital.</p>
+                </div>
+                <div class="circle-light"></div>
+            </div>
+            <div class="circle-box">
+                <div>
+                    <h2><strong>🎯 Objetivo<br>del Proyecto.🎯</strong></h2>
+                    <p>Entender qué tanto impacto tienen estas colaboraciones entre marcas de maquillaje y videojuegos para aumentar ventas y engagement, evaluando visibilidad, interacción en redes y alcance de público objetivo.</p>
+                </div>
+                <div class="circle-light"></div>
+            </div>
+            <div class="circle-box">
+                <div>
+                    <h2><strong>🔍 Problema y<br> Oportunidad.🔍</strong></h2>
+                    <p>A pesar de que esta estrategia parece prometedora, aún hay poca información sobre su efectividad. Las empresas carecen de datos claros para evaluar si estas alianzas valen la pena. Sin embargo, esto representa no solo un desafío, sino también una gran oportunidad. Un estudio adecuado podría abrir un nuevo camino para innovar en marketing digital, combinando dos mundos distintos que, juntos, pueden generar alto engagement y aumentar las ventas.</p>
+                </div>
+                <div class="circle-light"></div>
+            </div>
+            <div class="circle-box">
+                <div>
+                    <h3><strong>💡IMPORTANTE💡</strong></h3>
+                    <p>El sistema fue desarrollado usando <strong>FastAPI</strong> y <strong>SQLModel</strong>, e incluye vistas <strong>HTML</strong> para mejorar la experiencia del usuario y ofrecer mayor valor.</p>
+                </div>
+                <div class="circle-light"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
