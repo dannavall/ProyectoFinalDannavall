@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <title>{% block title %}{% endblock %} - Visualizando</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+            /* Estilos para el botón de encuesta circular */
+    .survey-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #a581dd;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .survey-button img {
+        width: 60%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .survey-button:hover {
+        transform: scale(1.1);
+    }
+
+    </style>
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+
+    <main class="container mt-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Botón fijo de encuesta con imagen -->
+<a href="https://forms.gle/qbE7tzA3vtDFCGmU8" target="_blank" class="survey-button">
+    <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//logo%20inicio.png" alt="Encuesta">
+</a>
+
+    {% include 'includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
