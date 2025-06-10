@@ -24,6 +24,35 @@
         line-height: 1.6;
     ">
         <style>
+            @keyframes lilacGlow {
+    0% { box-shadow: 0 0 20px rgba(178, 110, 219, 0.4); }
+    50% { box-shadow: 0 0 35px rgba(178, 110, 219, 0.9); }
+    100% { box-shadow: 0 0 20px rgba(178, 110, 219, 0.4); }
+}
+
+.cloud-style {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(145deg, #f9f5ff, #f3e9ff);
+    border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%;
+    box-shadow: 0 0 25px rgba(178, 110, 219, 0.5);
+    animation: lilacGlow 2s infinite ease-in-out;
+    font-family: 'Poppins', sans-serif;
+    border: 3px solid #B26EDBFF;
+    color: #444;
+    text-align: center;
+}
+.cloud-style h2 {
+    font-size: 1.9rem;
+    color: #9C27B0FF;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+.cloud-style p {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
         @keyframes ledGlowUniform {
             0% { box-shadow: 0 0 15px rgba(255, 202, 212, 0.6), 0 0 30px rgba(255, 202, 212, 0.4); }
             50% { box-shadow: 0 0 30px rgba(255, 202, 212, 1), 0 0 50px rgba(255, 202, 212, 0.8); }
@@ -154,6 +183,112 @@
             .circle-container { grid-template-columns: 1fr; }
             .palette-container { grid-template-columns: 1fr 1fr; }
         }
+            .graphics-section {
+    margin-top: 3rem;
+    background: #f8f4ff;
+    border: 3px solid #E2D1F9FF;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(106, 48, 147, 0.15);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.graphics-title {
+    font-size: 2rem;
+    color: var(--purple);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.graphics-description {
+    color: #555;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.graphics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+}
+
+.graphic-card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.graphic-card:hover {
+    transform: scale(1.03);
+}
+
+.graphic-card h3 {
+    color: #6A3093;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    font-weight: 600;
+}
+
+.graphic-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(2px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(106, 48, 147, 0.4);
+}
+
+.modal-caption {
+    color: #E2D1F9;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 0.75rem;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.modal-close:hover {
+    color: #FFCAD4;
+}
+
         </style>
 
         <div class="circle-container">
@@ -187,11 +322,59 @@
             </div>
         </div>
 
-        <div class="behind-section">
-            <h2>DETRÁS DEL PROYECTO...</h2>
-            <p>Todo empezó con una idea loca: ¿y si el maquillaje no fuera solo algo que se aplica, sino una experiencia que se vive? Entre botellas se Speed max, líneas de código que no querían cooperar y muchas pruebas fallidas, nació este proyecto.</p>
-            <p>No fue fácil. A veces el servidor se caía, otras veces era mi motivación la que necesitaba reiniciarse. Pero algo dentro de mí sabía que esto era más que una tarea o un proyecto: era la oportunidad de unir tecnología, creatividad y 2 cosas que me gustan mucho en algo con propósito: Mi tan anhelado proyecto de desarrollo de software.</p>
+        <div class="graphics-section">
+    <h2 class="graphics-title">📊 RESULTADOS VISUALES DEL ANÁLISIS 📊</h2>
+    <p class="graphics-description">Aquí puedes explorar los insights visuales obtenidos a partir del estudio de las colaboraciones entre maquillaje y videojuegos:</p>
+
+    <div class="graphics-grid">
+        <div class="graphic-card">
+            <span>📈</span>
+            <h3>Comparación entre colaboraciones</h3>
+            <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//comparacion_incrementos.png" alt="Comparación entre colaboraciones">
         </div>
+        <div class="graphic-card">
+            <span>🔄</span>
+            <h3>Correlación de los incrementos</h3>
+            <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//correlacion_incrementos.png" alt="Correlación de los incrementos">
+        </div>
+        <div class="graphic-card">
+            <span>📅</span>
+            <h3>Evolución temporal</h3>
+            <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//evolucion_temporal.png" alt="Evolución temporal">
+        </div>
+        <div class="graphic-card">
+            <span>📊</span>
+            <h3>Tipos de colaboración</h3>
+            <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//tipos_colaboracion.png" alt="Tipos de colaboración">
+        </div>
+        <div class="graphic-card">
+            <span>💋</span>
+            <h3>Top marcas de maquillaje</h3>
+            <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//top_marcas_maquillaje.png" alt="Top marcas de maquillaje">
+        </div>
+        <div class="graphic-card">
+            <span>🎮</span>
+            <h3>Top videojuegos</h3>
+            <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//top_videojuegos.png" alt="Top videojuegos">
+        </div>
+    </div>
+
+
+    <div id="imgModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="modal-caption"></div>
+    </div>
+</div>
+
+
+
+        <div class="behind-section cloud-style">
+    <h2>DETRÁS DEL PROYECTO...</h2>
+    <p>Todo empezó con una idea loca: ¿y si el maquillaje no fuera solo algo que se aplica, sino una experiencia que se vive? Entre botellas de Speed max, líneas de código que no querían cooperar y muchas pruebas fallidas, nació este proyecto.💫</p>
+    <p>No fue fácil. A veces el servidor se caía, otras veces era mi motivación la que necesitaba reiniciarse. Pero algo dentro de mí sabía que esto era más que una tarea o un proyecto: era la oportunidad de unir tecnología, creatividad y dos cosas que me gustan mucho en algo con propósito: mi tan anhelado proyecto de desarrollo de software.🌸</p>
+        </div>
+
 
         <div class="palette-highlight">
             <div class="palette-section">
@@ -247,5 +430,26 @@
         </div>
 
     </div>
+    <script>
+    function openModal(img) {
+        const modal = document.getElementById("imgModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        modal.style.display = "flex";  // aquí se activa flex
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
+    }
+    function closeModal() {
+        document.getElementById("imgModal").style.display = "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const images = document.querySelectorAll(".graphic-card img");
+        images.forEach(img => {
+            img.style.cursor = "pointer";
+            img.addEventListener("click", () => openModal(img));
+        });
+    });
+</script>
 </section>
 {% endblock %}
