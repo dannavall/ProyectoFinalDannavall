@@ -1,0 +1,459 @@
+{% extends "base.html" %}
+
+{% block title %}Consultas de Colaboraciones{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4" style="background-color: #ffffff;">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-0 rounded-lg" style="background: linear-gradient(145deg, #ffffff 0%, #d897f9 100%);">
+                <!-- Título con fuente especial -->
+                <div class="card-header text-center py-4" style="background: linear-gradient(135deg, #a581dd 0%, #d6afff 100%);">
+                    <h1 class="mb-0 text-white" style="font-family: 'Comic Sans MS', cursive, sans-serif; font-weight: 700; font-size: 2.5rem; color: #5a2d82; text-shadow: 1px 1px 2px rgba(217,127,253,0.8);">
+                        <i class="fas fa-gamepad me-2"></i><i class="fas fa-paint-brush me-2"></i>
+                        Consultas de Colaboraciones
+                        <i class="fas fa-paint-brush ms-2"></i><i class="fas fa-gamepad ms-2"></i>
+                    </h1>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- Consulta por ID -->
+                    <div class="card mb-4 border-0 shadow-sm" style="background-color: #f3e9ff;">
+                        <div class="card-header" style="background: linear-gradient(135deg, #d6afff 0%, #e2d1f9 100%);">
+                            <h2 class="h5 mb-0 text-purple">
+                                <i class="fas fa-id-card-alt me-2"></i>Buscar por ID
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="idForm" class="row g-3 align-items-end">
+                                <div class="col-md-4">
+                                    <label for="type" class="form-label text-purple">
+                                        <i class="fas fa-tag me-1"></i>Tipo:
+                                    </label>
+                                    <select id="type" name="type" class="form-select" style="border-color: #d6afff;" required>
+                                        <option value="cosmetics"><i class="fas fa-lipstick me-2"></i> Maquillaje</option>
+                                        <option value="videogames"><i class="fas fa-gamepad me-2"></i> Videojuegos</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="id" class="form-label text-purple">
+                                        <i class="fas fa-hashtag me-1"></i>ID:
+                                    </label>
+                                    <input type="number" id="id" name="id" class="form-control" style="border-color: #d6afff;" required min="1">
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-purple w-100">
+                                        <i class="fas fa-search me-2"></i>Buscar
+                                    </button>
+                                </div>
+                            </form>
+                            <div id="idResults" class="results mt-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Consulta por campo específico -->
+                    <div class="card mb-4 border-0 shadow-sm" style="background-color: #f3e9ff;">
+                        <div class="card-header" style="background: linear-gradient(135deg, #d6afff 0%, #e2d1f9 100%);">
+                            <h2 class="h5 mb-0 text-purple">
+                                <i class="fas fa-filter me-2"></i>Buscar por campo
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="fieldForm" class="row g-3 align-items-end">
+                                <div class="col-md-3">
+                                    <label for="fieldType" class="form-label text-purple">
+                                        <i class="fas fa-tag me-1"></i>Tipo:
+                                    </label>
+                                    <select id="fieldType" name="fieldType" class="form-select" style="border-color: #d6afff;" required>
+                                        <option value="cosmetics"><i class="fas fa-lipstick me-2"></i> Maquillaje</option>
+                                        <option value="videogames"><i class="fas fa-gamepad me-2"></i> Videojuegos</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="fieldName" class="form-label text-purple">
+                                        <i class="fas fa-list-ul me-1"></i>Campo:
+                                    </label>
+                                    <select id="fieldName" name="fieldName" class="form-select" style="border-color: #d6afff;" required>
+                                        <!-- Opciones se llenarán dinámicamente con JavaScript -->
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="fieldValue" class="form-label text-purple">
+                                        <i class="fas fa-search me-1"></i>Valor:
+                                    </label>
+                                    <input type="text" id="fieldValue" name="fieldValue" class="form-control" style="border-color: #d6afff;" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-purple w-100">
+                                        <i class="fas fa-search me-2"></i>Buscar
+                                    </button>
+                                </div>
+                            </form>
+                            <div id="fieldResults" class="results mt-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Consulta de cosméticos por marca -->
+                    <div class="card mb-4 border-0 shadow-sm" style="background-color: #f3e9ff;">
+                        <div class="card-header" style="background: linear-gradient(135deg, #d6afff 0%, #e2d1f9 100%);">
+                            <h2 class="h5 mb-0 text-purple">
+                                <i class="fas fa-palette me-2"></i>Buscar cosméticos
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="brandForm" class="row g-3 align-items-end">
+                                <div class="col-md-9">
+                                    <label for="brandName" class="form-label text-purple">
+                                        <i class="fas fa-crown me-1"></i>Marca:
+                                    </label>
+                                    <input type="text" id="brandName" name="brandName" class="form-control" style="border-color: #d6afff;" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-purple w-100">
+                                        <i class="fas fa-search me-2"></i>Buscar
+                                    </button>
+                                </div>
+                            </form>
+                            <div id="brandResults" class="results mt-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Consulta de videojuegos por nombre -->
+                    <div class="card mb-4 border-0 shadow-sm" style="background-color: #f3e9ff;">
+                        <div class="card-header" style="background: linear-gradient(135deg, #d6afff 0%, #e2d1f9 100%);">
+                            <h2 class="h5 mb-0 text-purple">
+                                <i class="fas fa-joystick me-2"></i>Buscar videojuegos
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="gameForm" class="row g-3 align-items-end">
+                                <div class="col-md-9">
+                                    <label for="gameName" class="form-label text-purple">
+                                        <i class="fas fa-headset me-1"></i>Videojuego:
+                                    </label>
+                                    <input type="text" id="gameName" name="gameName" class="form-control" style="border-color: #d6afff;" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-purple w-100">
+                                        <i class="fas fa-search me-2"></i>Buscar
+                                    </button>
+                                </div>
+                            </form>
+                            <div id="gameResults" class="results mt-3"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --purple: #6a3093;
+        --light-purple: #d6afff;
+        --very-light-purple: #e2d1f9;
+        --bg-purple: #f8f4ff;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .text-purple {
+        color: var(--purple);
+    }
+
+    .btn-purple {
+        background-color: var(--purple);
+        color: white;
+        border: none;
+        transition: all 0.3s;
+        font-weight: 500;
+    }
+
+    .btn-purple:hover {
+        background-color: #5a2583;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(106, 48, 147, 0.3);
+    }
+
+    .results {
+        min-height: 50px;
+    }
+
+    .record {
+        background-color: white;
+        border-left: 4px solid var(--light-purple);
+        transition: all 0.3s;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .record:hover {
+        background-color: #fefcff;
+        border-left-width: 6px;
+        transform: translateX(5px);
+    }
+
+    .record h3 {
+        color: var(--purple);
+        border-bottom: 1px solid var(--very-light-purple);
+        padding-bottom: 8px;
+    }
+
+    .record img {
+        max-width: 250px;
+        max-height: 200px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin-top: 15px;
+        border: 1px solid var(--very-light-purple);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .error {
+        color: #e74c3c;
+        font-weight: 500;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .card {
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(166, 129, 221, 0.2);
+    }
+
+    .spinner-border {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .alert {
+        border-radius: 8px;
+    }
+
+    /* Efecto especial para el título */
+    .card-header h1 {
+        letter-spacing: 1px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .card-header h1::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        bottom: -5px;
+        left: 0;
+        background: #ffffff;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .card-header:hover h1::after {
+        transform: scaleX(1);
+    }
+
+    /* Íconos temáticos */
+    .fa-gamepad, .fa-joystick {
+        color: #6a3093;
+    }
+
+    .fa-paint-brush, .fa-lipstick, .fa-palette {
+        color: #6a3093;
+    }
+</style>
+
+<script>
+    // Campos disponibles para cada tipo
+    const fields = {
+        cosmetics: [
+            {name: "marca_maquillaje", label: "Marca de maquillaje"},
+            {name: "videojuego", label: "Videojuego"},
+            {name: "fecha_colaboracion", label: "Fecha de colaboración"},
+            {name: "tipo_colaboracion", label: "Tipo de colaboración"},
+            {name: "incremento_ventas_maquillaje", label: "Incremento de ventas"},
+            {name: "image_url", label: "URL de imagen"}
+        ],
+        videogames: [
+            {name: "videojuego", label: "Videojuego"},
+            {name: "marca_maquillaje", label: "Marca de maquillaje"},
+            {name: "fecha_colaboracion", label: "Fecha de colaboración"},
+            {name: "incremento_ventas_videojuego", label: "Incremento de ventas"},
+            {name: "image_url", label: "URL de imagen"}
+        ]
+    };
+
+    // Actualizar campos disponibles cuando cambia el tipo
+    document.getElementById('fieldType').addEventListener('change', function() {
+        const type = this.value;
+        const fieldSelect = document.getElementById('fieldName');
+        fieldSelect.innerHTML = '';
+
+        fields[type].forEach(field => {
+            const option = document.createElement('option');
+            option.value = field.name;
+            option.textContent = field.label;
+            fieldSelect.appendChild(option);
+        });
+    });
+
+    // Inicializar campos
+    document.getElementById('fieldType').dispatchEvent(new Event('change'));
+
+    // Manejar formulario de búsqueda por ID
+    document.getElementById('idForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const type = document.getElementById('type').value;
+        const id = document.getElementById('id').value;
+        const resultsDiv = document.getElementById('idResults');
+
+        resultsDiv.innerHTML = '<div class="text-center py-3"><div class="spinner-border text-purple" role="status"><span class="visually-hidden">Buscando...</span></div><p class="mt-2 text-purple">Buscando...</p></div>';
+
+        try {
+            const response = await fetch(`/${type}/${id}`);
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+            const data = await response.json();
+            displayResults([data], resultsDiv);
+        } catch (error) {
+            resultsDiv.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+        }
+    });
+
+    // Manejar formulario de búsqueda por campo
+    document.getElementById('fieldForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const type = document.getElementById('fieldType').value;
+        const field = document.getElementById('fieldName').value;
+        const value = document.getElementById('fieldValue').value;
+        const resultsDiv = document.getElementById('fieldResults');
+
+        resultsDiv.innerHTML = '<div class="text-center py-3"><div class="spinner-border text-purple" role="status"><span class="visually-hidden">Buscando...</span></div><p class="mt-2 text-purple">Buscando...</p></div>';
+
+        try {
+            const response = await fetch(`/${type}/search_by_field?field=${field}&value=${value}`);
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+            const data = await response.json();
+            displayResults(data, resultsDiv);
+        } catch (error) {
+            resultsDiv.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+        }
+    });
+
+    // Manejar formulario de búsqueda por marca
+    document.getElementById('brandForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const brand = document.getElementById('brandName').value;
+        const resultsDiv = document.getElementById('brandResults');
+
+        resultsDiv.innerHTML = '<div class="text-center py-3"><div class="spinner-border text-purple" role="status"><span class="visually-hidden">Buscando...</span></div><p class="mt-2 text-purple">Buscando...</p></div>';
+
+        try {
+            const response = await fetch(`/cosmetics/search_by_brand?marca_maquillaje=${brand}`);
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+            const data = await response.json();
+            displayResults(data, resultsDiv);
+        } catch (error) {
+            resultsDiv.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+        }
+    });
+
+    // Manejar formulario de búsqueda por nombre de videojuego
+    document.getElementById('gameForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const game = document.getElementById('gameName').value;
+        const resultsDiv = document.getElementById('gameResults');
+
+        resultsDiv.innerHTML = '<div class="text-center py-3"><div class="spinner-border text-purple" role="status"><span class="visually-hidden">Buscando...</span></div><p class="mt-2 text-purple">Buscando...</p></div>';
+
+        try {
+            const response = await fetch(`/videogames/search_by_name?nombre_videojuego=${game}`);
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+            const data = await response.json();
+            displayResults(data, resultsDiv);
+        } catch (error) {
+            resultsDiv.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+        }
+    });
+
+    // Función para mostrar los resultados
+    function displayResults(records, container) {
+        if (!records || records.length === 0) {
+            container.innerHTML = '<div class="alert alert-info" style="background-color: #e2d1f9; border-color: #d6afff; color: #6a3093;"><i class="fas fa-info-circle me-2"></i>No se encontraron resultados.</div>';
+            return;
+        }
+
+        container.innerHTML = '';
+
+        records.forEach(record => {
+            const recordDiv = document.createElement('div');
+            recordDiv.className = 'record p-4';
+
+            let html = `<h3 class="h4 mb-3 text-purple"><i class="fas fa-id-badge me-2"></i>ID: ${record.id}</h3><div class="row">`;
+
+            // Agregar campos dinámicamente
+            for (const [key, value] of Object.entries(record)) {
+                if (key === 'id') continue;
+
+                if (key === 'image_url' && value) {
+                    html += `
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <p class="fw-bold mb-1 text-purple"><i class="fas fa-image me-2"></i>Imagen:</p>
+                                <img src="${value}" class="img-fluid rounded" alt="Imagen de colaboración">
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    const icon = key.includes('maquillaje') ? 'fas fa-lipstick' :
+                                key.includes('videojuego') ? 'fas fa-gamepad' :
+                                key.includes('fecha') ? 'fas fa-calendar-alt' :
+                                key.includes('ventas') ? 'fas fa-chart-line' : 'fas fa-info-circle';
+
+                    html += `
+                        <div class="col-md-6 mb-2">
+                            <p class="mb-0"><span class="fw-bold text-purple"><i class="${icon} me-2"></i>${formattedKey}:</span> ${value || 'N/A'}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            html += '</div>';
+            recordDiv.innerHTML = html;
+            container.appendChild(recordDiv);
+        });
+    }
+</script>
+{% endblock %}
