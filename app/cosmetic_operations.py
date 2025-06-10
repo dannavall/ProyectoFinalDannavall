@@ -2,7 +2,7 @@ from typing import List, Optional
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 from datetime import datetime
-from cosmetic_models import *
+from app.cosmetic_models import *
 
 class CosmeticOperations:
 
