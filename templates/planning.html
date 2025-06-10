@@ -1,0 +1,668 @@
+{% extends "base.html" %}
+
+{% block title %}Casos de Uso{% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --purple: #6a3093;
+        --light-purple: #d6afff;
+        --very-light-purple: #e2d1f9;
+        --bg-purple: #f8f4ff;
+    }
+
+    /* Añadido margen inferior para el footer */
+    main.container {
+        padding-bottom: 60px; /* Espacio para el footer */
+    }
+
+    .content-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: var(--bg-purple);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        margin-bottom: 40px; /* Espacio adicional */
+    }
+
+    /* Resto de tus estilos permanecen igual */
+    h1 {
+        color: var(--purple);
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .info-box {
+        background-color: var(--very-light-purple);
+        border-left: 5px solid var(--purple);
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+        font-size: 0.9em;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .info-box h2 {
+        margin-top: 0;
+        color: var(--purple);
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    .section-intro {
+        color: var(--purple);
+        font-size: 1.4em;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .case {
+        background-color: var(--very-light-purple);
+        border-left: 6px solid var(--purple);
+        padding: 15px 20px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+    }
+
+    .case h3 {
+        margin-top: 0;
+        color: var(--purple);
+    }
+
+    .label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    pre {
+        background-color: var(--light-purple);
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: var(--light-purple);
+    }
+
+    tr:nth-child(even) {
+        background-color: var(--very-light-purple);
+    }
+
+    .container-horizontal {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 30px;
+    }
+
+    .box-horizontal {
+        border: 1px solid #ccc;
+        padding: 15px;
+        width: 300px;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        background-color: #fafafa;
+    }
+
+    .box-horizontal h8 {
+        margin-top: 0;
+        font-size: 1.2rem;
+        color: #6a3093;
+        display: block;
+        font-weight: bold;
+    }
+
+    code {
+        background-color: #eee;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-family: monospace;
+    }
+
+    .timeline-container {
+        margin: 40px auto;
+        max-width: 900px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-container h2 {
+        text-align: center;
+        color: #5e4b8b;
+        margin-bottom: 20px;
+    }
+
+    .phase {
+        margin-bottom: 25px;
+        padding: 15px;
+        background-color: #ffffff;
+        border-left: 6px solid #5e4b8b;
+        border-radius: 8px;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .phase h3 {
+        margin: 0 0 10px;
+        color: #333;
+        font-size: 1.1rem;
+    }
+
+    .tools {
+        background-color: #eceef9;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+
+    .sources-box {
+        margin-top: 30px;
+    }
+
+    .sources-box button {
+        background-color: #d897f9;
+        color: black;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 5px;
+    }
+</style>
+
+<div class="content-container">
+    <h1>📘 Fase de planificación del proyecto</h1>
+
+    <div class="info-box">
+        <h2>Información a tener en cuenta</h2>
+        <p>🔍 <strong>¿Qué son los Casos de Uso?</strong><br>
+        Los casos de uso son descripciones claras y estructuradas de cómo un usuario (persona o sistema) interactúa con una aplicación para lograr un objetivo específico.</p>
+        <p>No se enfocan en cómo funciona el sistema internamente, sino en qué acciones puede realizar el usuario y cómo responde el sistema.</p>
+        <p>Son fundamentales en el diseño de software porque permiten:</p>
+        <ul>
+            <li>Identificar los requisitos funcionales.</li>
+            <li>Entender el comportamiento esperado del sistema.</li>
+            <li>Facilitar la comunicación entre desarrolladores, diseñadores y usuarios finales.</li>
+        </ul>
+        <p>🧩 <strong>Elementos clave de un caso de uso</strong></p>
+        <ul>
+            <li><strong>Actor:</strong> quién usa el sistema (ej. cliente, administrador).</li>
+            <li><strong>Escenario:</strong> qué quiere lograr el actor (ej. consultar una colaboración entre una marca y un videojuego).</li>
+            <li><strong>Flujo de eventos:</strong> paso a paso de la interacción.</li>
+        </ul>
+        <p>✨ <strong>¿Por qué son importantes?</strong><br>
+        Porque ayudan a garantizar que el sistema que estás construyendo resuelva necesidades reales y se enfoque en las acciones más relevantes desde el punto de vista del usuario.</p>
+    </div>
+
+    <div class="section-intro">🎯 Casos de Uso del Proyecto "Colaboraciones Maquillaje y Videojuegos"</div>
+
+    <div class="case">
+        <h3>1. Visualizar la Página de Inicio</h3>
+        <p><span class="label">Actor:</span> Usuario</p>
+        <p><span class="label">Descripción:</span> Accede a la página principal del sistema con navegación a diferentes funcionalidades.</p>
+        <p><span class="label">Ruta:</span> <code>/</code></p>
+    </div>
+
+    <div class="case">
+        <h3>2. Registrar una Nueva Colaboración (Maquillaje o Videojuego)</h3>
+        <p><span class="label">Actor:</span> Administrador / Usuario Autorizado</p>
+        <p><span class="label">Descripción:</span> Permite agregar una nueva colaboración entre una marca y un videojuego.</p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>POST /cosmetics
+POST /videogames</pre>
+    </div>
+
+    <div class="case">
+        <h3>3. Consultar Todas las Colaboraciones</h3>
+        <p><span class="label">Actor:</span> Usuario</p>
+        <p><span class="label">Descripción:</span> Muestra todas las colaboraciones registradas por tipo (maquillaje o videojuegos).</p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>GET /cosmetics
+GET /videogames</pre>
+    </div>
+
+    <div class="case">
+        <h3>4. Buscar Colaboraciones por Marca o Nombre</h3>
+        <p><span class="label">Actor:</span> Usuario</p>
+        <p><span class="label">Descripción:</span> Permite buscar colaboraciones por:
+        <ul>
+            <li>Marca de maquillaje (<code>marca_maquillaje</code>)</li>
+            <li>Nombre del videojuego (<code>nombre_videojuego</code>)</li>
+        </ul>
+        </p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>GET /cosmetics/search_by_brand
+GET /videogames/search_by_name</pre>
+    </div>
+
+    <div class="case">
+        <h3>5. Búsqueda Avanzada por Campo Específico</h3>
+        <p><span class="label">Actor:</span> Usuario</p>
+        <p><span class="label">Descripción:</span> Permite buscar colaboraciones filtrando por cualquier campo, como fecha, tipo de colaboración, etc.</p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>GET /cosmetics/search_by_field
+GET /videogames/search_by_field</pre>
+    </div>
+
+    <div class="case">
+        <h3>6. Filtrar por Fecha de Colaboración Más Reciente</h3>
+        <p><span class="label">Actor:</span> Usuario</p>
+        <p><span class="label">Descripción:</span> Muestra colaboraciones ordenadas por fecha más reciente.</p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>GET /cosmetics/by_date
+GET /videogames/by_date</pre>
+    </div>
+
+    <div class="case">
+        <h3>7. Consultar Detalles de una Colaboración</h3>
+        <p><span class="label">Actor:</span> Usuario</p>
+        <p><span class="label">Descripción:</span> Muestra los detalles completos de una colaboración específica.</p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>GET /cosmetics/{cosmetic_id}
+GET /videogames/{videogame_id}</pre>
+    </div>
+
+    <div class="case">
+        <h3>8. Actualizar Colaboraciones Existentes</h3>
+        <p><span class="label">Actor:</span> Administrador / Usuario Autorizado</p>
+        <p><span class="label">Descripción:</span> Permite editar la información de una colaboración existente.</p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>PUT /cosmetics/{cosmetic_id}
+PUT /videogames/{videogame_id}</pre>
+    </div>
+
+    <div class="case">
+        <h3>9. Eliminar Colaboraciones</h3>
+        <p><span class="label">Actor:</span> Administrador</p>
+        <p><span class="label">Descripción:</span> Elimina (lógicamente) una colaboración específica.</p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>POST /cosmetics/delete
+POST /videogames/delete</pre>
+    </div>
+
+    <div class="case">
+        <h3>10. Ver Colaboraciones Eliminadas</h3>
+        <p><span class="label">Actor:</span> Usuario / Administrador</p>
+        <p><span class="label">Descripción:</span> Permite consultar colaboraciones que han sido eliminadas (soft delete).</p>
+        <p><span class="label">Ruta:</span></p>
+        <pre>GET /cosmetics/deleted
+GET /videogames/deleted
+GET /deleted</pre>
+    </div>
+
+    <div class="case">
+        <h3>11. Consultar Información Adicional</h3>
+        <p><span class="label">Actor:</span> Usuario</p>
+        <p><span class="label">Descripción:</span> Consultar páginas informativas del proyecto.</p>
+        <p><span class="label">Rutas:</span></p>
+        <pre>/update → Página de actualización
+/query → Página de consultas
+/developer → Información del desarrollador
+/objetivo → Objetivo del proyecto</pre>
+    </div>
+
+    <div class="section-intro" style="margin-top: 50px;">🎯 Modelo de Datos del Proyecto "Colaboraciones Maquillaje y Videojuegos"</div>
+
+    <div class="info-box">
+        <h2>Información a tener en cuenta</h2>
+        <p>✅ <strong>¿Qué son los Modelos de Datos?</strong><br>
+        Los modelos de datos son representaciones estructuradas de cómo se organiza, almacena y relaciona la información dentro de un sistema o base de datos.</p>
+        <p>No muestran cómo luce la interfaz ni el diseño visual, sino qué datos existen, cómo se conectan y cómo fluyen entre entidades (como tablas en una base de datos).</p>
+        <p>Son esenciales en el desarrollo de software porque permiten:</p>
+        <ul>
+            <li>📦 Definir con precisión la información que manejará el sistema.</li>
+            <li>🔗 Establecer relaciones entre distintos elementos (por ejemplo, una marca y su colaboración).</li>
+            <li>🧠 Optimizar el almacenamiento, consulta y procesamiento de datos.</li>
+        </ul>
+        <p>🧩 <strong>Elementos clave de un modelo de datos</strong></p>
+        <ul>
+            <li><strong>Entidad:</strong> Objeto o concepto principal (ej. Colaboración, Marca, Videojuego).</li>
+            <li><strong>Atributos:</strong> Características o propiedades de cada entidad (ej. nombre, fecha, plataforma).</li>
+            <li><strong>Relaciones:</strong> Conexiones lógicas entre entidades (ej. una colaboración pertenece a una marca y a un videojuego).</li>
+        </ul>
+        <p>✨ <strong>¿Por qué son importantes?</strong><br>
+        Porque son la base sobre la cual se construye toda la lógica del sistema. Un modelo de datos bien diseñado:</p>
+        <ul>
+            <li>✅ Evita errores en el manejo de información.</li>
+            <li>🔍 Facilita búsquedas, filtros y análisis.</li>
+            <li>🧱 Es el punto de partida para crear la base de datos real (en SQL, SQLModel, etc.).</li>
+        </ul>
+    </div>
+
+    <h3>1. Entidad: CosmeticColab (Colaboración Maquillaje)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Tipo de dato</th>
+                <th>Descripción</th>
+                <th>Comentarios</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>id</td>
+                <td>Integer (PK)</td>
+                <td>Identificador único de la colaboración</td>
+                <td>Auto incremental</td>
+            </tr>
+            <tr>
+                <td>marca_maquillaje</td>
+                <td>String</td>
+                <td>Nombre de la marca de maquillaje</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>videojuego</td>
+                <td>String</td>
+                <td>Nombre del videojuego asociado</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>fecha_colaboracion</td>
+                <td>Date</td>
+                <td>Fecha de la colaboración</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>tipo_colaboracion</td>
+                <td>String</td>
+                <td>Tipo de colaboración (ej. edición limitada, skins, etc.)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>incremento_ventas_maquillaje</td>
+                <td>Float / Decimal</td>
+                <td>Incremento porcentual en ventas de maquillaje</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>image_url</td>
+                <td>String (URL)</td>
+                <td>URL de la imagen o recurso visual de la colaboración</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>deleted</td>
+                <td>Boolean</td>
+                <td>Marca para eliminación lógica (soft delete)</td>
+                <td>True si está eliminado</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2. Entidad: VideogameColab (Colaboración Videojuego)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Tipo de dato</th>
+                <th>Descripción</th>
+                <th>Comentarios</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>id</td>
+                <td>Integer (PK)</td>
+                <td>Identificador único de la colaboración</td>
+                <td>Auto incremental</td>
+            </tr>
+            <tr>
+                <td>videojuego</td>
+                <td>String</td>
+                <td>Nombre del videojuego</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>marca_maquillaje</td>
+                <td>String</td>
+                <td>Nombre de la marca de maquillaje</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>fecha_colaboracion</td>
+                <td>Date</td>
+                <td>Fecha de la colaboración</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>incremento_ventas_videojuego</td>
+                <td>Float / Decimal</td>
+                <td>Incremento porcentual en ventas de videojuego</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>image_url</td>
+                <td>String (URL)</td>
+                <td>URL de la imagen o recurso visual de la colaboración</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>deleted</td>
+                <td>Boolean</td>
+                <td>Marca para eliminación lógica (soft delete)</td>
+                <td>True si está eliminado</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="container-horizontal">
+        <div class="box-horizontal">
+            <h8>3. Entidades Derivadas para Registros Eliminados</h8>
+            <p>Para mostrar registros eliminados, se reutilizan los mismos modelos anteriores, pero filtrando por <code>deleted = True</code>.</p>
+            <ul>
+                <li><strong>DeletedCosmeticColab:</strong> instancia de CosmeticColab con deleted=True.</li>
+                <li><strong>DeletedVideogameColab:</strong> instancia de VideogameColab con deleted=True.</li>
+            </ul>
+        </div>
+
+        <div class="box-horizontal">
+            <h8>4. Relaciones</h8>
+            <p>Actualmente no hay relaciones explícitas de claves foráneas complejas, sino dos entidades paralelas (maquillaje y videojuegos) que se relacionan conceptualmente a través de la colaboración.</p>
+        </div>
+
+        <div class="box-horizontal">
+            <h8>5. Campos Clave y Restricciones</h8>
+            <ul>
+                <li><code>id</code> es la clave primaria en ambas tablas.</li>
+                <li><code>deleted</code> es un booleano para manejar eliminación lógica.</li>
+                <li>Campos de texto son requeridos para identificar marcas y videojuegos.</li>
+                <li><code>fecha_colaboracion</code> es una fecha que permite ordenar y filtrar por tiempo.</li>
+                <li>Campos de incremento de ventas son numéricos para análisis cuantitativo.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>6. Resumen</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Entidad</th>
+                <th>Campos principales</th>
+                <th>Funcionalidad principal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CosmeticColab</td>
+                <td>id, marca_maquillaje, videojuego, fecha_colaboracion, tipo_colaboracion,<br> incremento_ventas_maquillaje, image_url, deleted</td>
+                <td>Gestionar colaboraciones maquillaje–videojuego</td>
+            </tr>
+            <tr>
+                <td>VideogameColab</td>
+                <td>id, videojuego, marca_maquillaje, fecha_colaboracion,<br> incremento_ventas_videojuego, image_url, deleted</td>
+                <td>Gestionar colaboraciones videojuego–maquillaje</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>7. Mapa de Endpoints de la API</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>Ruta</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>GET</td>
+                <td>/cosmetics</td>
+                <td>Listar colaboraciones de maquillaje activas</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/cosmetics</td>
+                <td>Crear nueva colaboración de maquillaje</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>/cosmetics/{id}</td>
+                <td>Actualizar colaboración de maquillaje</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/cosmetics/{id}</td>
+                <td>Eliminar lógicamente colaboración de maquillaje</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/videogames</td>
+                <td>Listar colaboraciones de videojuegos activas</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/videogames</td>
+                <td>Crear nueva colaboración de videojuego</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>/videogames/{id}</td>
+                <td>Actualizar colaboración de videojuego</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/videogames/{id}</td>
+                <td>Eliminar lógicamente colaboración de videojuego</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="timeline-container">
+        <h2>🗓️ Cronograma del Proyecto - Videojuegos 🎮 & Maquillaje 💄</h2>
+
+        <div class="phase">
+            <h3>🔹 Fase 1: Planeación y Elección del Tema (Febrero 2025)</h3>
+            <p>✅ Elección del tema: *Impacto de las colaboraciones entre videojuegos y maquillaje*.</p>
+            <p>🧠 Justificación: no existía una base de datos pública, se creó manualmente.</p>
+            <p>🛠️ Herramientas definidas: FastAPI, PyCharm, GitHub, PostgreSQL, Clever Cloud.</p>
+        </div>
+
+        <div class="phase">
+            <h3>🔹 Fase 2: Desarrollo Backend CRUD (Marzo 2025)</h3>
+            <p>📁 Repositorio creado en GitHub.</p>
+            <p>🧱 Modelos con SQLModel y endpoints CRUD asincrónicos en FastAPI.</p>
+            <p>🗃️ Base de datos configurada en PostgreSQL con Clever Cloud.</p>
+            <p>🔌 Pruebas de conexión y queries realizadas.</p>
+        </div>
+
+        <div class="phase">
+            <h3>🔹 Fase 3: Importación CSV y Datos Iniciales (Abril 2025)</h3>
+            <p>📊 Integración de archivos .csv con datos de colaboraciones.</p>
+            <p>🔎 Filtros por <code>deleted</code>, fecha y marca.</p>
+            <p>📤 Carga de datos, validación y control de errores.</p>
+            <p>🌐 Control de versiones y commits constantes en GitHub.</p>
+        </div>
+
+        <div class="phase">
+            <h3>🔹 Fase 4: Interfaz HTML Visual (Mayo 2025)</h3>
+            <p>🖼️ Interfaz web desarrollada en HTML y CSS personalizada.</p>
+            <p>🎮 Diseño temático acorde a videojuegos y maquillaje.</p>
+            <p>📡 Conexión entre frontend y backend mediante FastAPI.</p>
+            <p>🧪 Pruebas de usabilidad, navegación y responsividad.</p>
+        </div>
+
+        <div class="phase">
+            <h3>🔹 Fase 5: Documentación y Despliegue Final (Junio 2025)</h3>
+            <p>📄 Documentación técnica completa con diagramas y rutas.</p>
+            <p>🧪 Pruebas finales e integración completa del sistema.</p>
+            <p>🚀 Despliegue en Render y/o Clever Cloud.</p>
+            <p>🎤 Presentación del proyecto con explicación funcional.</p>
+        </div>
+
+        <div class="phase tools">
+            <strong>🧰 Tecnologías y Herramientas Utilizadas:</strong><br>
+            🔹 Lenguaje: Python &nbsp; 🔹 Framework: FastAPI &nbsp; 🔹 Modelado: SQLModel<br>
+            🔹 IDE: PyCharm &nbsp; 🔹 Base de Datos: PostgreSQL en Clever Cloud<br>
+            🔹 Versionamiento: Git + GitHub &nbsp; 🔹 Frontend: HTML + CSS<br>
+            🔹 Despliegue: Render / Clever &nbsp; 🔹 Datos: Archivos CSV
+        </div>
+    </div>
+
+    <div class="sources-box">
+        <h2>📚 Fuentes de Datos</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <a href="https://latam.ign.com/" target="_blank"><button>IGN Latam</button></a>
+            <a href="https://hypebae.com/" target="_blank"><button>Hypebae</button></a>
+            <a href="https://www.riotgames.com/" target="_blank"><button>Riot Games</button></a>
+            <a href="https://www.roblox.com" target="_blank"><button>Roblox</button></a>
+            <a href="https://www.maybelline.com" target="_blank"><button>Maybelline</button></a>
+            <a href="https://www.narscosmetics.com/" target="_blank"><button>NARS Cosmetics</button></a>
+            <a href="https://www.dove.com/co/home.html" target="_blank"><button>Dove</button></a>
+            <a href="https://www.elfcosmetics.com/" target="_blank"><button>e.l.f. Cosmetics</button></a>
+            <a href="https://www.businessoffashion.com/" target="_blank"><button>Business of Fashion</button></a>
+            <a href="https://techcrunch.com/" target="_blank"><button>TechCrunch</button></a>
+            <a href="https://www.thedrum.com/" target="_blank"><button>The Drum</button></a>
+            <a href="https://www.nintendo.com/games/detail/animal-crossing-new-horizons-switch" target="_blank"><button>Animal Crossing</button></a>
+            <a href="https://www.allure.com/" target="_blank"><button>Allure</button></a>
+            <a href="https://www.urbandecay.com" target="_blank"><button>Urban Decay</button></a>
+            <a href="https://www.theverge.com/" target="_blank"><button>The Verge</button></a>
+            <a href="https://wwd.com/" target="_blank"><button>WWD</button></a>
+            <a href="https://www.gamespot.com/" target="_blank"><button>Gamespot</button></a>
+            <a href="https://kotaku.com/" target="_blank"><button>Kotaku</button></a>
+            <a href="https://www.businessinsider.com/" target="_blank"><button>Business Insider</button></a>
+            <a href="https://www.maccosmetics.com.co/" target="_blank"><button>MAC Cosmetics</button></a>
+            <a href="https://www.epicgames.com/fortnite" target="_blank"><button>Fortnite</button></a>
+            <a href="https://www.revolutionbeauty.com" target="_blank"><button>Revolution Beauty</button></a>
+            <a href="https://www.cyberpunk.net" target="_blank"><button>Cyberpunk 2077</button></a>
+            <a href="https://www.maybelline.es/trucos-tutoriales/hot-news-belleza" target="_blank"><button>Maybelline ES</button></a>
+            <a href="https://www.voguebusiness.com/" target="_blank"><button>Vogue Business</button></a>
+            <a href="https://www.dove.com/co/dove-self-esteem-project.html" target="_blank"><button>Dove Self-Esteem</button></a>
+            <a href="https://www.investopedia.com/" target="_blank"><button>Investopedia</button></a>
+            <a href="https://www.barrons.com/" target="_blank"><button>Barron's</button></a>
+            <a href="https://www.20minutos.es/noticia/4334764/0/givenchy-aterriza-en-animal-crossing-con-nuevos-disenos-de-ropa-y-maquillaje-inspirados-en-la-marca/" target="_blank"><button>Givenchy en Animal Crossing</button></a>
+            <a href="https://www.givenchybeauty.com/es" target="_blank"><button>Givenchy Beauty</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}
