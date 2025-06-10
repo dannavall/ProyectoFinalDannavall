@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}
+    ✏️ Actualizar Registro
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="header-section mb-5 p-4 rounded-4"
+         style="background: linear-gradient(135deg, #e2d1f9 0%, #f8f4ff 100%);">
+        <h2 class="display-5 fw-bold text-center text-purple mb-3">
+            ✏️ Actualizar Registro
+        </h2>
+        <p class="text-center text-muted mb-0">
+            Busca y actualiza registros de colaboraciones entre marcas de maquillaje y videojuegos
+        </p>
+    </div>
+
+    <!-- Sección de búsqueda -->
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-5">
+        <div class="card-body p-4">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="model-type" class="form-label fw-bold text-purple">Selecciona el Modelo:</label>
+                    <select id="model-type" class="form-select form-select-lg" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="cosmetics">💄 Cosméticos</option>
+                        <option value="videogames">🎮 Videojuegos</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="record-id" class="form-label fw-bold text-purple">ID del Registro:</label>
+                    <input type="number" id="record-id" class="form-control form-control-lg"
+                           placeholder="Ingresa el ID" required>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <button onclick="searchRecord()" class="btn btn-purple btn-lg px-4">
+                        <i class="fas fa-search me-2"></i> Buscar Registro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario de actualización -->
+    <div id="updateFormContainer" style="display: none;">
+    </div>
+</div>
+
+<script>
+async function searchRecord() {
+    const modelType = document.getElementById('model-type').value;
+    const recordId = document.getElementById('record-id').value;
+
+    try {
+        const response = await fetch(`/${modelType}/${recordId}`);
+        if (!response.ok) throw new Error('Registro no encontrado');
+
+        const record = await response.json();
+        showUpdateForm(modelType, record);
+    } catch (error) {
+        alert('Error: ' + error.message);
+    }
+}
+
+function showUpdateForm(modelType, record) {
+    const container = document.getElementById('updateFormContainer');
+    const fields = modelType === 'cosmetics' ? getCosmeticFields() : getVideogameFields();
+
+    let formHTML = `
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card-body p-4">
+                <h2 class="fw-bold text-purple mb-4">
+                    <i class="fas fa-edit me-2"></i> Editar Registro
+                </h2>
+                <form id="updateForm" class="row g-3" enctype="multipart/form-data">
+                    <input type="hidden" id="currentImageUrl" value="${record.image_url}">
+    `;
+
+    // Generar campos del formulario
+    fields.forEach(field => {
+        if (field.name !== 'image_file') {
+            formHTML += `
+                <div class="col-md-6">
+                    <label for="${field.name}" class="form-label fw-bold">
+                        <i class="${field.icon} me-2"></i>${field.label}:
+                    </label>
+                    <input type="${field.type}"
+                           id="${field.name}"
+                           name="${field.name}"
+                           class="form-control form-control-lg"
+                           value="${record[field.name] || ''}"
+                           ${field.placeholder ? `placeholder="${field.placeholder}"` : ''}>
+                </div>
+            `;
+        }
+    });
+
+    // Sección de imagen
+    formHTML += `
+        <div class="col-12">
+            <div class="card border-0 shadow-sm mb-3" style="background-color: #f8f4ff;">
+                <div class="card-header" style="background: linear-gradient(135deg, #e2d1f9 0%, #dbb4f8 100%);">
+                    <h3 class="h5 mb-0 text-purple">
+                        <i class="fas fa-image me-2"></i>Imagen de la Colaboración
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 text-center mb-3 mb-md-0">
+                            <img src="${record.image_url}" class="img-thumbnail rounded-3"
+                                 style="max-height: 200px; width: auto;">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="image_file" class="form-label fw-bold">Subir nueva imagen (opcional):</label>
+                                <input type="file" id="image_file" name="image_file"
+                                       class="form-control form-control-lg" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg px-4">
+                <i class="fas fa-save me-2"></i> Guardar Cambios
+            </button>
+        </div>
+    </form>
+    <div id="updateResult" class="mt-3"></div>
+    </div>
+    </div>
+    `;
+
+    container.innerHTML = formHTML;
+    container.style.display = 'block';
+
+    // Configurar el manejador del formulario
+    document.getElementById('updateForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await handleUpdate(modelType, record.id);
+    });
+}
+
+function getCosmeticFields() {
+    return [
+        {name: "marca_maquillaje", label: "Marca de Maquillaje", type: "text", icon: "fas fa-lipstick"},
+        {name: "videojuego", label: "Videojuego", type: "text", icon: "fas fa-gamepad"},
+        {name: "fecha_colaboracion", label: "Fecha de Colaboración", type: "text", icon: "fas fa-calendar-alt", placeholder: "YYYY-MM-DD"},
+        {name: "tipo_colaboracion", label: "Tipo de Colaboración", type: "text", icon: "fas fa-handshake"},
+        {name: "incremento_ventas_maquillaje", label: "Incremento de Ventas", type: "text", icon: "fas fa-chart-line", placeholder: "Ej: 20%"},
+        {name: "image_file", label: "Imagen", type: "file", icon: "fas fa-image"}
+    ];
+}
+
+function getVideogameFields() {
+    return [
+        {name: "videojuego", label: "Videojuego", type: "text", icon: "fas fa-gamepad"},
+        {name: "marca_maquillaje", label: "Marca de Maquillaje", type: "text", icon: "fas fa-lipstick"},
+        {name: "fecha_colaboracion", label: "Fecha de Colaboración", type: "text", icon: "fas fa-calendar-alt", placeholder: "YYYY-MM-DD"},
+        {name: "incremento_ventas_videojuego", label: "Incremento de Ventas", type: "text", icon: "fas fa-chart-line", placeholder: "Ej: 20%"},
+        {name: "image_file", label: "Imagen", type: "file", icon: "fas fa-image"}
+    ];
+}
+
+async function handleUpdate(modelType, recordId) {
+    const form = document.getElementById('updateForm');
+    const resultDiv = document.getElementById('updateResult');
+    const formData = new FormData(form);
+
+    // Si no se seleccionó una nueva imagen, mantener la URL existente
+    const imageFile = formData.get('image_file');
+    if (!imageFile || imageFile.size === 0) {
+        formData.delete('image_file');
+    }
+
+    resultDiv.innerHTML = '<div class="text-center py-3"><div class="spinner-border text-purple" role="status"></div><p class="mt-2 text-purple">Actualizando registro...</p></div>';
+
+    try {
+        const response = await fetch(`/${modelType}/${recordId}`, {
+            method: 'PUT',
+            body: formData
+        });
+
+        if (!response.ok) throw new Error(await response.text());
+
+        const result = await response.json();
+        resultDiv.innerHTML = `
+            <div class="alert alert-success" style="background-color: #d4edda; border-color: #c3e6cb; color: #155724;">
+                <i class="fas fa-check-circle me-2"></i>
+                ¡Registro actualizado con éxito!
+            </div>
+        `;
+
+        // Recargar el registro actualizado
+        searchRecord();
+    } catch (error) {
+        resultDiv.innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                Error: ${error.message}
+            </div>
+        `;
+    }
+}
+</script>
+
+<style>
+.text-purple {
+    color: #6a3093;
+}
+
+.btn-purple {
+    background-color: #6a3093;
+    color: white;
+    border: none;
+    transition: all 0.3s;
+}
+
+.btn-purple:hover {
+    background-color: #5a2583;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(106, 48, 147, 0.3);
+}
+</style>
+{% endblock %}
