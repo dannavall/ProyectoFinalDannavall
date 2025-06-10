@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+  <!-- Header Section -->
+  <div class="row mb-5 align-items-center">
+    <div class="col-md-4 text-center">
+      <div class="profile-frame p-2 bg-white shadow-sm rounded-circle" style="background: linear-gradient(150deg, #a581dd 0%, #f8f4ff 100%);">
+        <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//lindotaa.jpg"
+             class="img-fluid rounded-circle border border-4 border-white"
+             alt="Danna Valentina Martínez Sánchez"
+             style="width: 300px; height: 300px; object-fit: cover;">
+      </div>
+    </div>
+    <div class="col-md-8 mt-4 mt-md-0">
+      <h1 class="display-5 fw-bold text-purple">Danna Valentina Martínez Sánchez</h1>
+      <p class="lead text-muted">Estudiante de Desarrollo de Software 7-9</p>
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <span class="badge bg-light-purple text-purple">Python</span>
+        <span class="badge bg-light-purple text-purple">CSS</span>
+        <span class="badge bg-light-purple text-purple">c++</span>
+        <span class="badge bg-light-purple text-purple">java</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="row g-4">
+    <!-- Left Column -->
+    <div class="col-lg-8">
+      <!-- About Card -->
+      <div class="card mb-4 border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="h4 card-title text-purple mb-3"><i class="fas fa-star me-2"></i>Sobre mí</h2>
+          <p class="card-text line-height-lg">
+            ¡Hola! Soy Danna Valentina, estudiante de ingeniería de sistemas.
+            Me encantan los detalles y hacer que todo se vea bonito (como puedes evidenciar en este proyecto).
+            Tengo una perrita llamada kira que juega mucho y es quien me ha acompañado en todo este proceso.
+            Cuando no estoy haciendo los trabajos de la Universidad me gusta salir con mis amigos (a veces).
+
+          </p>
+          <p class="card-text line-height-lg">
+            Creo firmemente en que la tecnología debe ser accesible y hermosa para todos (aunque a veces nos genere dolores de cabeza).
+          </p>
+        </div>
+      </div>
+
+      <!-- Projects Card -->
+      <div class="card mb-4 border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="h4 card-title text-purple mb-3"><i class="fas fa-code me-2"></i>Proyectos Destacados</h2>
+          <div class="row g-3">
+            <!-- Project 1 -->
+            <div class="col-md-6">
+              <div class="card h-100 border-light-purple">
+                <div class="card-body">
+                  <h3 class="h5 text-purple">API Cosméticos-Videojuegos</h3>
+                  <p class="card-text small text-muted">Plataforma que conecta las colaboraciones de marcas de cosméticos con videojuegos.</p>
+                  <div class="mt-auto">
+                    <span class="badge bg-very-light-purple text-purple small">Videojuegos</span>
+                    <span class="badge bg-very-light-purple text-purple small">Cosméticos</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="col-md-6">
+              <div class="card h-100 border-light-purple">
+                <div class="card-body">
+                  <h3 class="h5 text-purple">Dev Parcial 2</h3>
+                  <p class="card-text small text-muted">Parcial de dificultad alta que se hizo en segundo corte de la asignatura :(.</p>
+                  <div class="mt-auto">
+                    <span class="badge bg-very-light-purple text-purple small">Aterrador</span>
+                    <span class="badge bg-very-light-purple text-purple small">Imposible</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="col-md-6">
+              <div class="card h-100 border-light-purple">
+                <div class="card-body">
+                  <h3 class="h5 text-purple">Hoja de Vida Kira</h3>
+                  <p class="card-text small text-muted">Hoja de vida en CSS de mi compañera de aventuras.</p>
+                  <div class="mt-auto">
+                    <span class="badge bg-very-light-purple text-purple small">Kira</span>
+                    <span class="badge bg-very-light-purple text-purple small">Mascotas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="col-md-6">
+              <div class="card h-100 border-light-purple">
+                <div class="card-body">
+                  <h3 class="h5 text-purple">Dev Workshop</h3>
+                  <p class="card-text small text-muted">Cuando los entregables no eran TAN complejos</p>
+                  <div class="mt-auto">
+                    <span class="badge bg-very-light-purple text-purple small">Python</span>
+                    <span class="badge bg-very-light-purple text-purple small">Corte 1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-4">
+      <!-- Contact Card -->
+      <div class="card mb-4 border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="h4 card-title text-purple mb-3"><i class="fas fa-envelope me-2"></i>Contacto</h2>
+          <ul class="list-unstyled">
+            <li class="mb-3">
+              <i class="fas fa-envelope text-light-purple me-2"></i>
+              <a href="mailto:dvmartinez35@ucatolica.edu.co" class="text-decoration-none">dvmartinez35@ucatolica.edu.co</a>
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-map-marker-alt text-light-purple me-2"></i>
+              Bogotá, Colombia
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-phone text-light-purple me-2"></i>
+              +57 302 303 2132
+            </li>
+          </ul>
+
+          <h3 class="h5 text-purple mt-4 mb-3"><i class="fas fa-share-alt me-2"></i>Redes Sociales</h3>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="https://github.com/dannavall" class="btn btn-sm btn-outline-purple rounded-pill" target="_blank">
+              <i class="fab fa-github me-1"></i> GitHub
+            </a>
+            <a href="https://www.instagram.com/_dannaavall/" class="btn btn-sm btn-outline-instagram rounded-pill" target="_blank">
+              <i class="fab fa-instagram me-1"></i> Instagram
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=573023032132&text=Holaa." class="btn btn-sm btn-outline-success rounded-pill" target="_blank">
+              <i class="fab fa-whatsapp me-1"></i> WhatsApp
+            </a>
+            <a href="https://www.tiktok.com/@__valentinaaa22" class="btn btn-sm btn-outline-dark rounded-pill" target="_blank">
+              <i class="fab fa-tiktok me-1"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education Card -->
+      <div class="card mb-4 border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="h4 card-title text-purple mb-3"><i class="fas fa-graduation-cap me-2"></i>Educación</h2>
+          <div class="mb-3">
+            <h3 class="h6 text-purple mb-1">Ingeniería de Sistemas y Computación</h3>
+            <p class="small text-muted mb-1">Universidad Católica de Colombia</p>
+            <p class="small text-muted">2023 - Presente</p>
+          </div>
+          <div>
+            <h3 class="h6 text-purple mb-1">En mi casa</h3>
+            <p class="small text-muted mb-1">Kennedy</p>
+            <p class="small text-muted">1984</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fun Facts Card -->
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="h4 card-title text-purple mb-3"><i class="fas fa-smile me-2"></i>Datos Curiosos</h2>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-laptop-house text-light-purple me-2"></i> Jugadora experta de los sims 4.</li>
+            <li class="mb-2"><i class="fas fa-heart text-light-purple me-2"></i> Linda por naturaleza.</li>
+            <li class="mb-2"><i class="fas fa-candy-cane text-light-purple me-2"></i> Amante de las gomitas.</li>
+            <li class="mb-2"><i class="fas fa-clock text-light-purple me-2"></i> Procrastinadora amateur.</li>
+            <li><i class="fas fa-bed text-light-purple me-2"></i> Dormilona profesional.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --purple: #6a3093;
+    --light-purple: #d6afff;
+    --very-light-purple: #e2d1f9;
+    --bg-purple: #f8f4ff;
+  }
+
+  body {
+    background-color: #faf9ff;
+  }
+
+  .text-purple {
+    color: var(--purple);
+  }
+
+  .bg-light-purple {
+    background-color: var(--light-purple);
+  }
+
+  .bg-very-light-purple {
+    background-color: var(--very-light-purple);
+  }
+
+  .border-light-purple {
+    border: 1px solid var(--very-light-purple);
+  }
+
+  .btn-outline-purple {
+    color: var(--purple);
+    border-color: var(--purple);
+  }
+
+  .btn-outline-purple:hover {
+    background-color: var(--purple);
+    color: white;
+  }
+
+  .btn-outline-instagram {
+    color: #dc2743;
+    border-color: #dc2743;
+  }
+
+  .btn-outline-instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    border-color: transparent;
+  }
+
+  .profile-frame {
+    display: inline-block;
+    background: linear-gradient(135deg, #e2d1f9 0%, #f8f4ff 100%);
+    padding: 8px;
+    border-radius: 50%;
+  }
+
+  .line-height-lg {
+    line-height: 1.7;
+  }
+
+  .card {
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+  }
+</style>
+{% endblock %}
