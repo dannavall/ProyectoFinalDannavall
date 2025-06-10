@@ -7,9 +7,9 @@ from database.connection_db import get_session
 from fastapi.templating import Jinja2Templates
 import os
 
-from app.cosmetic_models import *
+from app.cosmetic_models import CosmeticColab, CosmeticColabBase, CosmeticColabResponse, CosmeticColabCreate,CosmeticColabUpdate, CosmeticColabRead, DeletedCosmeticColab
 from bucket.upload_images import save_file
-from app.videogame_models import *
+from app.videogame_models import VideogameColab, VideogameColabBase, VideogameColabResponse, VideogameColabCreate, VideogameColabUpdate, VideogameColabRead, DeletedVideogameColab
 from app.cosmetic_operations import CosmeticOperations
 from app.videogame_operations import VideogameOperations
 
