@@ -10,8 +10,8 @@ import os
 from app.cosmetic_models import *
 from bucket.upload_images import save_file
 from app.videogame_models import *
-from cosmetic_operations import CosmeticOperations
-from videogame_operations import VideogameOperations
+from app.cosmetic_operations import CosmeticOperations
+from app.videogame_operations import VideogameOperations
 
 app = FastAPI(
     title="Colaboraciones Maquillaje y Videojuegos",
