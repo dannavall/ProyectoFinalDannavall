@@ -118,6 +118,102 @@ Fase de diseño
     </div>
 </section>
 
+<section style="padding: 2rem; background-color: var(--bg-purple);">
+  <h2 style="
+      text-align: center;
+      color: var(--purple);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+  ">
+    📐 Diagramas de Clase 📐
+  </h2>
+  <div style="
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+  ">
+    <!-- Diagrama de Clases Maquillaje -->
+    <div style="
+        flex: 1 1 350px;
+        background-color: var(--very-light-purple);
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(106, 48, 147, 0.2);
+        text-align: center;
+    ">
+      <h3 style="color: var(--purple); margin-bottom: 1rem;">💄 Diagrama de Clases Maquillaje</h3>
+      <!-- Reemplaza el src con la URL de tu diagrama -->
+      <div style="position: relative; padding-top: 56.25%; overflow: hidden; border-radius: 8px; background: #f3e9ff;">
+        <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//cosmetic_models.png" alt="Diagrama de Clases Maquillaje" style="
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+        ">
+      </div>
+    </div>
+
+    <!-- Diagrama de Clases Videojuegos -->
+    <div style="
+        flex: 1 1 350px;
+        background-color: var(--very-light-purple);
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(106, 48, 147, 0.2);
+        text-align: center;
+    ">
+      <h3 style="color: var(--purple); margin-bottom: 1rem;">🎮 Diagrama de Clases Videojuegos</h3>
+      <!-- Reemplaza el src con la URL de tu diagrama -->
+      <div style="position: relative; padding-top: 56.25%; overflow: hidden; border-radius: 8px; background: #f3e9ff;">
+        <img src="https://rmdubdjtxgbbrfkabpsp.supabase.co/storage/v1/object/public/imagenes//videogame_models.png" alt="Diagrama de Clases Videojuegos" style="
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+        ">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal genérico para expandir diagramas -->
+<div id="classDiagramModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); align-items:center; justify-content:center; z-index:1000; padding:1rem;">
+  <span id="classDiagramModalClose" style="position:absolute; top:20px; right:30px; color:#fff; font-size:2rem; cursor:pointer; z-index:1001;">&times;</span>
+  <img id="classDiagramModalImage" src="" alt="" style="max-width:90%; max-height:90%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.5);">
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('classDiagramModal');
+  const modalImg = document.getElementById('classDiagramModalImage');
+  const modalClose = document.getElementById('classDiagramModalClose');
+  // Todas las imágenes de diagramas en este bloque: selecciona por alt o atributo common si prefieres
+  document.querySelectorAll('section img[alt^="Diagrama de Clases"]').forEach(img => {
+    img.addEventListener('click', () => {
+      modalImg.src = img.src;
+      modal.style.display = 'flex';
+    });
+  });
+  modalClose.addEventListener('click', () => {
+    modal.style.display = 'none';
+    modalImg.src = '';
+  });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      modalImg.src = '';
+    }
+  });
+});
+</script>
+
+
+
 <section style="background-color: var(--bg-purple); padding: 2rem;">
   <h2 style="
       text-align: center;
