@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="header-section mb-5 p-4 rounded-4"
+         style="background: linear-gradient(135deg, #e2d1f9 0%, #f8f4ff 100%);">
+        <h2 class="display-5 fw-bold text-center text-purple mb-3">
+            <i class="bi bi-trash-fill me-2"></i> Eliminar Registros
+        </h2>
+        <p class="text-center text-muted mb-0">
+            Busca y elimina registros de cosméticos o videojuegos
+        </p>
+    </div>
+
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
+        <div class="card-header bg-light-purple text-white">
+            <h3 class="h5 mb-0"><i class="bi bi-search me-2"></i> Buscar Registro</h3>
+        </div>
+        <div class="card-body">
+            <form id="searchForm" class="row g-3">
+                <div class="col-md-4">
+                    <label for="type" class="form-label">Tipo de Registro</label>
+                    <select class="form-select" id="type" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="cosmetics">Cosmético</option>
+                        <option value="videogames">Videojuego</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="id" class="form-label">ID del Registro</label>
+                    <input type="number" class="form-control" id="id" required>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-purple w-100">
+                        <i class="bi bi-search me-1"></i> Buscar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="searchResults" class="mb-4"></div>
+
+    <div id="recordPreview" class="card border-0 shadow-lg rounded-4 overflow-hidden d-none">
+        <div class="card-header bg-danger text-white">
+            <h3 class="h5 mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> Confirmar Eliminación</h3>
+        </div>
+        <div class="card-body">
+            <div id="previewContent" class="mb-4"></div>
+            <form id="deleteForm" method="POST">
+                <input type="hidden" id="deleteType" name="type">
+                <input type="hidden" id="deleteId" name="id">
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="button" id="cancelDelete" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-1"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash-fill me-1"></i> Confirmar Eliminación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+  :root {
+    --purple: #6a3093;
+    --light-purple: #dbb4f8;
+    --very-light-purple: #e2d1f9;
+    --bg-purple: #f8f4ff;
+  }
+
+  .text-purple {
+    color: var(--purple);
+  }
+
+  .bg-light-purple {
+    background-color: var(--light-purple);
+  }
+
+  .btn-purple {
+    background-color: var(--purple);
+    color: white;
+  }
+
+  .btn-purple:hover {
+    background-color: var(--light-purple);
+    color: var(--purple);
+  }
+
+  .header-section {
+    box-shadow: 0 4px 20px rgba(106, 48, 147, 0.1);
+  }
+
+  .record-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--very-light-purple);
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Buscar registro por ID
+    document.getElementById('searchForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const type = document.getElementById('type').value;
+        const id = document.getElementById('id').value;
+        const resultsDiv = document.getElementById('searchResults');
+
+        resultsDiv.innerHTML = `
+            <div class="text-center py-4">
+                <div class="spinner-border text-purple" role="status">
+                    <span class="visually-hidden">Buscando...</span>
+                </div>
+                <p class="mt-2 text-purple">Buscando registro...</p>
+            </div>`;
+
+        try {
+            const response = await fetch(`/${type}/${id}`);
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+            const data = await response.json();
+            displayRecordPreview(data, type);
+        } catch (error) {
+            resultsDiv.innerHTML = `
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    Error: ${error.message || 'Registro no encontrado'}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>`;
+        }
+    });
+
+    // Mostrar vista previa del registro
+    function displayRecordPreview(data, type) {
+        const previewDiv = document.getElementById('recordPreview');
+        const previewContent = document.getElementById('previewContent');
+        
+        let html = '';
+        if (type === 'cosmetics') {
+            html = `
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <img src="${data.image_url}" alt="${data.marca_maquillaje}" class="record-img mb-3">
+                    </div>
+                    <div class="col-md-9">
+                        <h4 class="text-purple">${data.marca_maquillaje} x ${data.videojuego}</h4>
+                        <ul class="list-unstyled">
+                            <li><strong>ID:</strong> ${data.id}</li>
+                            <li><strong>Fecha Colaboración:</strong> ${data.fecha_colaboracion}</li>
+                            <li><strong>Tipo Colaboración:</strong> <span class="badge bg-light-purple text-purple">${data.tipo_colaboracion}</span></li>
+                            <li><strong>Incremento Ventas:</strong> <span class="text-success fw-bold">+${data.incremento_ventas_maquillaje}</span></li>
+                        </ul>
+                    </div>
+                </div>`;
+        } else {
+            html = `
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <img src="${data.image_url}" alt="${data.videojuego}" class="record-img mb-3">
+                    </div>
+                    <div class="col-md-9">
+                        <h4 class="text-purple">${data.videojuego} x ${data.marca_maquillaje}</h4>
+                        <ul class="list-unstyled">
+                            <li><strong>ID:</strong> ${data.id}</li>
+                            <li><strong>Fecha Colaboración:</strong> ${data.fecha_colaboracion}</li>
+                            <li><strong>Incremento Ventas:</strong> <span class="text-success fw-bold">+${data.incremento_ventas_videojuego}</span></li>
+                        </ul>
+                    </div>
+                </div>`;
+        }
+
+        previewContent.innerHTML = html;
+        document.getElementById('deleteType').value = type;
+        document.getElementById('deleteId').value = data.id;
+        previewDiv.classList.remove('d-none');
+        document.getElementById('searchResults').innerHTML = '';
+    }
+
+    // Cancelar eliminación
+    document.getElementById('cancelDelete').addEventListener('click', function() {
+        document.getElementById('recordPreview').classList.add('d-none');
+    });
+
+    // Enviar formulario de eliminación
+    document.getElementById('deleteForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const type = document.getElementById('deleteType').value;
+        const id = document.getElementById('deleteId').value;
+        
+        try {
+            const response = await fetch(`/${type}/delete`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${id}`
+            });
+            
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+            
+            const result = await response.json();
+            showAlert('success', result.message);
+            document.getElementById('recordPreview').classList.add('d-none');
+            document.getElementById('searchForm').reset();
+        } catch (error) {
+            showAlert('danger', error.message || 'Error al eliminar el registro');
+        }
+    });
+
+    // Mostrar alertas
+    function showAlert(type, message) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+        alertDiv.innerHTML = `
+            <i class="bi ${type === 'success' ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'} me-2"></i>
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        document.getElementById('searchResults').appendChild(alertDiv);
+    }
+});
+</script>
+{% endblock %}
