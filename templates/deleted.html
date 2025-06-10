@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-4 mb-0 text-purple fw-bold">Registros Eliminados</h1>
+        <a href="/" class="btn btn-purple">
+            <i class="bi bi-arrow-left me-1"></i> Volver al inicio
+        </a>
+    </div>
+
+    <!-- Mensajes -->
+    {% if message %}
+    <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% if error %}
+    <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ error }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <!-- Pestañas para navegar entre tablas -->
+    <ul class="nav nav-tabs mb-4" id="deletedTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active text-purple" id="cosmetics-tab" data-bs-toggle="tab" data-bs-target="#cosmetics" type="button" role="tab">
+                <i class="bi bi-brush me-1"></i> Cosméticos ({{ deleted_cosmetics|length }})
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-purple" id="videogames-tab" data-bs-toggle="tab" data-bs-target="#videogames" type="button" role="tab">
+                <i class="bi bi-controller me-1"></i> Videojuegos ({{ deleted_videogames|length }})
+            </button>
+        </li>
+    </ul>
+
+    <!-- Contenido de las pestañas -->
+    <div class="tab-content" id="deletedTabsContent">
+        <!-- Tabla de cosméticos eliminados -->
+        <div class="tab-pane fade show active" id="cosmetics" role="tabpanel">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card-header bg-light-purple text-white">
+                    <h3 class="h5 mb-0">
+                        <i class="bi bi-brush me-2"></i>
+                        Cosméticos Eliminados
+                    </h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light-purple">
+                                <tr>
+                                    <th class="ps-4">#</th>
+                                    <th>Marca Maquillaje</th>
+                                    <th>Videojuego</th>
+                                    <th>Fecha</th>
+                                    <th>Tipo Colaboración</th>
+                                    <th>Incremento Ventas</th>
+                                    <th class="text-center">Imagen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if deleted_cosmetics %}
+                                    {% for item in deleted_cosmetics %}
+                                    <tr class="hover-highlight">
+                                        <td class="fw-bold ps-4">{{ item.id }}</td>
+                                        <td>{{ item.marca_maquillaje }}</td>
+                                        <td>{{ item.videojuego }}</td>
+                                        <td>{{ item.fecha_colaboracion }}</td>
+                                        <td>
+                                            <span class="badge bg-light-purple text-purple">
+                                                {{ item.tipo_colaboracion }}
+                                            </span>
+                                        </td>
+                                        <td class="text-success fw-bold">
+                                            +{{ item.incremento_ventas_maquillaje }}
+                                        </td>
+                                        <td class="text-center">
+                                            <img src="{{ item.image_url }}"
+                                                 alt="Imagen de {{ item.marca_maquillaje }}"
+                                                 class="img-thumbnail rounded-3 gallery-img"
+                                                 style="width: 80px; height: 80px; object-fit: cover;"
+                                                 data-bs-toggle="modal"
+                                                 data-bs-target="#imageModal"
+                                                 data-bs-img="{{ item.image_url }}"
+                                                 data-bs-title="{{ item.marca_maquillaje }} x {{ item.videojuego }}">
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4 text-muted">
+                                            <i class="bi bi-database-exclamation fs-4"></i>
+                                            <p class="mt-2 mb-0">No hay cosméticos eliminados</p>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de videojuegos eliminados -->
+        <div class="tab-pane fade" id="videogames" role="tabpanel">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card-header bg-light-purple text-white">
+                    <h3 class="h5 mb-0">
+                        <i class="bi bi-controller me-2"></i>
+                        Videojuegos Eliminados
+                    </h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light-purple">
+                                <tr>
+                                    <th class="ps-4">#</th>
+                                    <th>Videojuego</th>
+                                    <th>Marca Maquillaje</th>
+                                    <th>Fecha</th>
+                                    <th>Incremento Ventas</th>
+                                    <th class="text-center">Imagen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if deleted_videogames %}
+                                    {% for item in deleted_videogames %}
+                                    <tr class="hover-highlight">
+                                        <td class="fw-bold ps-4">{{ item.id }}</td>
+                                        <td>{{ item.videojuego }}</td>
+                                        <td>{{ item.marca_maquillaje }}</td>
+                                        <td>{{ item.fecha_colaboracion }}</td>
+                                        <td class="text-success fw-bold">
+                                            +{{ item.incremento_ventas_videojuego }}
+                                        </td>
+                                        <td class="text-center">
+                                            <img src="{{ item.image_url }}"
+                                                 alt="Imagen de {{ item.videojuego }}"
+                                                 class="img-thumbnail rounded-3 gallery-img"
+                                                 style="width: 80px; height: 80px; object-fit: cover;"
+                                                 data-bs-toggle="modal"
+                                                 data-bs-target="#imageModal"
+                                                 data-bs-img="{{ item.image_url }}"
+                                                 data-bs-title="{{ item.videojuego }} x {{ item.marca_maquillaje }}">
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6" class="text-center py-4 text-muted">
+                                            <i class="bi bi-database-exclamation fs-4"></i>
+                                            <p class="mt-2 mb-0">No hay videojuegos eliminados</p>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para imágenes -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+            <div class="modal-header bg-light-purple text-white">
+                <h5 class="modal-title" id="modalImageTitle"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-0">
+                <img id="modalImage" src="" class="img-fluid" style="max-height: 70vh; width: auto;">
+            </div>
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-purple" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+  :root {
+    --purple: #6a3093;
+    --light-purple: #dbb4f8;
+    --very-light-purple: #e2d1f9;
+    --bg-purple: #f8f4ff;
+  }
+
+  .text-purple {
+    color: var(--purple);
+  }
+
+  .bg-light-purple {
+    background-color: var(--light-purple);
+  }
+
+  .bg-very-light-purple {
+    background-color: var(--very-light-purple);
+  }
+
+  .btn-purple {
+    background-color: var(--purple);
+    color: white;
+  }
+
+  .btn-purple:hover {
+    background-color: var(--light-purple);
+    color: var(--purple);
+  }
+
+  .table-light-purple {
+    background-color: var(--bg-purple);
+    color: var(--purple);
+  }
+
+  .hover-highlight:hover {
+    background-color: rgba(233, 221, 249, 0.3) !important;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+  }
+
+  .img-thumbnail {
+    border: 2px solid var(--very-light-purple);
+    padding: 2px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: zoom-in;
+  }
+
+  .img-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .gallery-img {
+    cursor: pointer;
+  }
+
+  .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .nav-tabs .nav-link {
+    font-weight: 500;
+  }
+
+  .nav-tabs .nav-link.active {
+    color: var(--purple);
+    background-color: var(--bg-purple);
+    border-color: var(--light-purple) var(--light-purple) var(--bg-purple);
+  }
+
+  .nav-tabs .nav-link:not(.active):hover {
+    border-color: var(--light-purple) var(--light-purple) var(--very-light-purple);
+    color: var(--purple);
+  }
+
+  .card {
+    border-radius: 0.5rem;
+  }
+
+  .badge {
+    font-weight: 500;
+    padding: 0.35em 0.5em;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var imageModal = document.getElementById('imageModal');
+    imageModal.addEventListener('show.bs.modal', function(event) {
+        var button = event.relatedTarget;
+        var imgSrc = button.getAttribute('data-bs-img');
+        var imgTitle = button.getAttribute('data-bs-title');
+
+        var modalTitle = imageModal.querySelector('.modal-title');
+        var modalImage = imageModal.querySelector('#modalImage');
+
+        modalTitle.textContent = imgTitle;
+        modalImage.src = imgSrc;
+        modalImage.alt = imgTitle;
+    });
+
+    // Efecto de zoom al pasar el mouse
+    var galleryImages = document.querySelectorAll('.gallery-img');
+    galleryImages.forEach(function(img) {
+        img.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.zIndex = '10';
+        });
+        img.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.zIndex = '1';
+        });
+    });
+});
+</script>
+{% endblock %}
