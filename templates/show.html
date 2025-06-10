@@ -1,0 +1,233 @@
+{# templates/show.html #}
+{% extends "base.html" %}
+
+{% block title %}
+    ✨ Todas las Colaboraciones ✨
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="header-section mb-5 p-4 rounded-4"
+         style="background: linear-gradient(135deg, #e2d1f9 0%, #f8f4ff 100%);">
+        <h2 class="display-5 fw-bold text-center text-purple mb-3">
+            ✨ Todas las Colaboraciones ✨
+        </h2>
+        <p class="text-center text-muted mb-0">
+            Explora todas las colaboraciones entre marcas de cosméticos y videojuegos
+        </p>
+    </div>
+
+    <!-- Sección de Cosméticos -->
+    <div class="mb-5">
+        <h3 class="fw-bold text-purple mb-4">💄 Colaboraciones de Maquillaje</h3>
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light-purple">
+                            <tr>
+                                <th class="ps-4">#</th>
+                                <th>Marca de Maquillaje</th>
+                                <th>Videojuego</th>
+                                <th>Fecha</th>
+                                <th>Tipo de Colaboración</th>
+                                <th>Incremento Ventas</th>
+                                <th class="text-center">Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in cosmetics %}
+                            <tr class="hover-highlight">
+                                <td class="fw-bold ps-4">{{ record.id }}</td>
+                                <td>{{ record.marca_maquillaje }}</td>
+                                <td>{{ record.videojuego }}</td>
+                                <td>{{ record.fecha_colaboracion }}</td>
+                                <td>
+                                    <span class="badge bg-light-purple text-purple">
+                                        {{ record.tipo_colaboracion }}
+                                    </span>
+                                </td>
+                                <td class="text-success fw-bold">
+                                    +{{ record.incremento_ventas_maquillaje }}
+                                </td>
+                                <td class="text-center">
+                                    <img src="{{ record.image_url }}"
+                                         alt="Imagen de {{ record.marca_maquillaje }}"
+                                         class="img-thumbnail rounded-3 gallery-img"
+                                         style="width: 80px; height: 80px; object-fit: cover;"
+                                         data-bs-toggle="modal"
+                                         data-bs-target="#imageModal"
+                                         data-bs-img="{{ record.image_url }}"
+                                         data-bs-title="{{ record.marca_maquillaje }} x {{ record.videojuego }}">
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Videojuegos -->
+    <div class="mb-5">
+        <h3 class="fw-bold text-purple mb-4">🎮 Colaboraciones de Videojuegos</h3>
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light-purple">
+                            <tr>
+                                <th class="ps-4">#</th>
+                                <th>Videojuego</th>
+                                <th>Marca de Maquillaje</th>
+                                <th>Fecha</th>
+                                <th>Incremento Ventas</th>
+                                <th class="text-center">Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in games %}
+                            <tr class="hover-highlight">
+                                <td class="fw-bold ps-4">{{ record.id }}</td>
+                                <td>{{ record.videojuego }}</td>
+                                <td>{{ record.marca_maquillaje }}</td>
+                                <td>{{ record.fecha_colaboracion }}</td>
+                                <td class="text-success fw-bold">
+                                    +{{ record.incremento_ventas_videojuego }}
+                                </td>
+                                <td class="text-center">
+                                    <img src="{{ record.image_url }}"
+                                         alt="Imagen de {{ record.videojuego }}"
+                                         class="img-thumbnail rounded-3 gallery-img"
+                                         style="width: 80px; height: 80px; object-fit: cover;"
+                                         data-bs-toggle="modal"
+                                         data-bs-target="#imageModal"
+                                         data-bs-img="{{ record.image_url }}"
+                                         data-bs-title="{{ record.videojuego }} x {{ record.marca_maquillaje }}">
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para imágenes -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+            <div class="modal-header bg-light-purple text-white">
+                <h5 class="modal-title" id="modalImageTitle"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-0">
+                <img id="modalImage" src="" class="img-fluid" style="max-height: 70vh; width: auto;">
+            </div>
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-purple" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+  :root {
+    --purple: #6a3093;
+    --light-purple: #dbb4f8;
+    --very-light-purple: #e2d1f9;
+    --bg-purple: #f8f4ff;
+  }
+
+  .text-purple {
+    color: var(--purple);
+  }
+
+  .bg-light-purple {
+    background-color: var(--light-purple);
+  }
+
+  .bg-very-light-purple {
+    background-color: var(--very-light-purple);
+  }
+
+  .btn-purple {
+    background-color: var(--purple);
+    color: white;
+  }
+
+  .btn-purple:hover {
+    background-color: var(--light-purple);
+  }
+
+  .table-light-purple {
+    background-color: var(--bg-purple);
+    color: var(--purple);
+  }
+
+  .hover-highlight:hover {
+    background-color: rgba(233, 221, 249, 0.3) !important;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+  }
+
+  .header-section {
+    box-shadow: 0 4px 20px rgba(106, 48, 147, 0.1);
+  }
+
+  .img-thumbnail {
+    border: 2px solid var(--very-light-purple);
+    padding: 2px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: zoom-in;
+  }
+
+  .img-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .gallery-img {
+    cursor: pointer;
+  }
+
+  .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var imageModal = document.getElementById('imageModal');
+    imageModal.addEventListener('show.bs.modal', function(event) {
+        var button = event.relatedTarget;
+        var imgSrc = button.getAttribute('data-bs-img');
+        var imgTitle = button.getAttribute('data-bs-title');
+
+        var modalTitle = imageModal.querySelector('.modal-title');
+        var modalImage = imageModal.querySelector('#modalImage');
+
+        modalTitle.textContent = imgTitle;
+        modalImage.src = imgSrc;
+        modalImage.alt = imgTitle;
+    });
+
+    // Efecto de zoom al pasar el mouse
+    var galleryImages = document.querySelectorAll('.gallery-img');
+    galleryImages.forEach(function(img) {
+        img.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.zIndex = '10';
+        });
+        img.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.zIndex = '1';
+        });
+    });
+});
+</script>
+{% endblock %}
