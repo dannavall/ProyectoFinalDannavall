@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio | Cosmetic Gaming Hub{% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --purple: #6a3093;
+        --light-purple: #dbb4f8;
+        --very-light-purple: #e2d1f9;
+        --bg-purple: #f8f4ff;
+        --pink: #e1a1f3;
+        --deep-purple: #6a1b9a;
+    }
+
+    .section-wrapper {
+        background: linear-gradient(135deg, var(--pink), var(--very-light-purple));
+        padding: 3rem 1rem;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        margin-bottom: 3rem;
+    }
+
+    .custom-card {
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        text-align: center;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-6px);
+    }
+
+    .custom-card .icon {
+        font-size: 2.5rem;
+        color: #b26edb;
+        margin-bottom: 10px;
+    }
+
+    .custom-card a {
+        text-decoration: none;
+        color: var(--deep-purple);
+        font-weight: 600;
+    }
+
+    .custom-card a:hover {
+        color: var(--purple);
+    }
+
+    /* Gallery Styles */
+    .gallery-section {
+        background: linear-gradient(135deg, #f8f4ff, #ffffff);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(106, 48, 147, 0.1);
+        margin-bottom: 3rem;
+    }
+
+    .gallery-title {
+        color: var(--purple);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .gallery-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, var(--light-purple), var(--purple));
+        border-radius: 2px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .gallery-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        transition: all 0.4s ease;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(106, 48, 147, 0.2);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .no-images {
+        text-align: center;
+        padding: 2rem;
+        color: var(--purple);
+        font-style: italic;
+    }
+
+    /* Gallery Info Styles */
+    .gallery-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(106, 48, 147, 0.85);
+        color: white;
+        padding: 8px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        text-align: center;
+    }
+
+    .gallery-item:hover .gallery-info {
+        transform: translateY(0);
+    }
+
+    .gallery-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    .gallery-date {
+        font-size: 0.75rem;
+        margin-top: 4px;
+    }
+
+    /* Modal Styles */
+    .modal-header-custom {
+        background: linear-gradient(135deg, var(--light-purple), var(--purple));
+        color: white;
+    }
+
+    .btn-custom-purple {
+        background-color: var(--purple);
+        color: white;
+        border: none;
+    }
+
+    .btn-custom-purple:hover {
+        background-color: var(--deep-purple);
+        color: white;
+    }
+
+    /* Estilos para el modal */
+    #modalTitle {
+        font-size: 1.2rem;
+    }
+
+    #modalDate {
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold" style="color: var(--purple);">🌸 Cosmetic Gaming Hub 🌸</h1>
+        <p class="lead" style="color: var(--deep-purple);">¡Explora todas las funciones de tu aplicación desde un solo lugar!</p>
+    </div>
+
+    <div class="section-wrapper">
+        <div class="row g-4">
+            {% for page in [
+                ('create', '🧪 Crear'),
+                ('update', '🔄 Actualizar'),
+                ('delete', '❌ Eliminar'),
+                ('query', '🔍 Consultar'),
+                ('goal', '🎯 Objetivos'),
+                ('deleted', '🗑️ Ver Eliminados'),
+                ('show', '📋 Registros'),
+                ('design', '🎨 Diseño'),
+                ('planning', '🗓️ Planificación')
+            ] %}
+            <div class="col-md-6 col-lg-4">
+                <div class="custom-card p-4">
+                    <div class="icon">{{ page[1].split(' ')[0] }}</div>
+                    <h5 class="mb-2">{{ page[1].split(' ')[1:]|join(' ') }}</h5>
+                    <a href="/{{ page[0] }}">Ir a {{ page[0] }}.html</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery-section">
+        <h2 class="gallery-title">✨ Galería de Colaboraciones ✨</h2>
+
+        {% if all_images %}
+        <div class="gallery-grid">
+            {% for image in all_images %}
+            <div class="gallery-item"
+                 data-bs-toggle="modal"
+                 data-bs-target="#imageModal"
+                 data-bs-img="{{ image.image_url }}"
+                 data-bs-title="
+                    {% if image.__class__.__name__ == 'CosmeticColab' -%}
+                        {{ image.marca_maquillaje }} y {{ image.videojuego }}
+                    {% elif image.__class__.__name__ == 'VideogameColab' -%}
+                        {{ image.videojuego }} y {{ image.marca_maquillaje }}
+                    {% endif -%}
+                 "
+                 data-bs-date="{{ image.fecha_colaboracion }}">
+                <img src="{{ image.image_url }}" alt="Imagen de colaboración">
+                <!-- Información debajo de la imagen -->
+                <div class="gallery-info">
+                    <div class="gallery-name">
+                        {% if image.__class__.__name__ == 'CosmeticColab' -%}
+                            {{ image.marca_maquillaje }} y {{ image.videojuego }}
+                        {% elif image.__class__.__name__ == 'VideogameColab' -%}
+                            {{ image.videojuego }} y {{ image.marca_maquillaje }}
+                        {% endif -%}
+                    </div>
+                    <div class="gallery-date">{{ image.fecha_colaboracion }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-images">
+            <p>No hay imágenes disponibles para mostrar.</p>
+            <i class="fas fa-image fa-3x" style="color: var(--light-purple); margin-top: 1rem;"></i>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Modal for Gallery Images -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0">
+            <div class="modal-header modal-header-custom">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-0">
+                <img id="modalImage" src="" class="img-fluid" style="max-height: 70vh; width: auto;">
+            </div>
+            <div class="modal-footer bg-light justify-content-between">
+                <div id="modalDate" class="text-muted"></div>
+                <button type="button" class="btn btn-custom-purple" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Gallery Modal
+    var imageModal = document.getElementById('imageModal');
+    imageModal.addEventListener('show.bs.modal', function(event) {
+        var item = event.relatedTarget;
+        var imgSrc = item.getAttribute('data-bs-img');
+        var title = item.getAttribute('data-bs-title');
+        var date = item.getAttribute('data-bs-date');
+
+        var modalImage = imageModal.querySelector('#modalImage');
+        var modalTitle = imageModal.querySelector('#modalTitle');
+        var modalDate = imageModal.querySelector('#modalDate');
+
+        modalImage.src = imgSrc;
+        modalTitle.textContent = title;
+        modalDate.textContent = date;
+    });
+
+    // Gallery item hover animation
+    var galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(function(item) {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+        });
+
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+});
+</script>
+{% endblock %}
